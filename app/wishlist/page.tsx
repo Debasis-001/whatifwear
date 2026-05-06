@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { StoreShell } from "@/app/components/store/StoreShell";
 import { useStore } from "@/app/context/store-context";
 import { products } from "@/app/lib/products";
-import { Heart, ShoppingBag, Trash2, Star } from "lucide-react";
+import { Heart, ShoppingBag, Star } from "lucide-react";
 
 export default function WishlistPage() {
   const { wishlist, toggleWishlist, addToCart } = useStore();
@@ -22,13 +22,13 @@ export default function WishlistPage() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8B8A6] block mb-2">Your Collection</span>
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-[#F3EEE8]">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEA83B] block mb-2 font-semibold">Your Collection</span>
+          <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-[#FDFCFA]">
             Wishlist
           </h1>
           <div className="mt-4 flex items-center gap-3">
-            <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-[#B8B8A6] to-transparent" />
-            <p className="text-[#F3EEE8]/60 text-sm">
+            <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-[#EEA83B] to-transparent" />
+            <p className="text-[#FDFCFA]/70 text-sm">
               {wishlistProducts.length} {wishlistProducts.length === 1 ? "piece" : "pieces"} saved
             </p>
           </div>
@@ -42,12 +42,12 @@ export default function WishlistPage() {
             className="empty-state-premium mx-auto max-w-md py-16"
           >
             <div className="icon-wrapper">
-              <Heart className="h-8 w-8 text-[#B8B8A6]/60" strokeWidth={1.5} />
+              <Heart className="h-8 w-8 text-[#EEA83B]" strokeWidth={1.5} />
             </div>
-            <h2 className="font-serif text-2xl font-light text-[#F3EEE8] mb-2">
+            <h2 className="font-serif text-2xl font-light text-[#FDFCFA] mb-2">
               Your wishlist is empty
             </h2>
-            <p className="text-[#F3EEE8]/50 text-sm mb-8 max-w-xs">
+            <p className="text-[#FDFCFA]/60 text-sm mb-8 max-w-xs">
               Save your favorite pieces to revisit them later. Start exploring our curated collection.
             </p>
             <Link
@@ -78,8 +78,8 @@ export default function WishlistPage() {
                       alt={product.name}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#6E725F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Subtle gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#134B42]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     {/* Remove from wishlist */}
                     <motion.button
@@ -105,7 +105,7 @@ export default function WishlistPage() {
                         addToCart(product.id);
                       }}
                       whileTap={{ scale: 0.95 }}
-                      className="absolute bottom-3 right-3 z-10 flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-[#8D927B] to-[#6E725F] text-[#F3EEE8] opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg"
+                      className="absolute bottom-3 right-3 z-10 flex items-center justify-center h-10 w-10 rounded-full bg-[#EEA83B] text-[#134B42] opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg hover:scale-110"
                       aria-label="Add to cart"
                     >
                       <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
@@ -113,14 +113,14 @@ export default function WishlistPage() {
                   </Link>
                   
                   {/* Product Info */}
-                  <div className="p-4 bg-gradient-to-b from-[#FAF8F5] to-[#F3EEE8]">
+                  <div className="p-4 bg-[#FDFCFA]">
                     <Link href={`/product/${product.id}`}>
-                      <h3 className="truncate text-sm font-medium text-[#6E725F] transition-colors duration-300 hover:text-[#8D927B]">
+                      <h3 className="truncate text-sm font-semibold text-[#134B42] transition-colors duration-300 hover:text-[#80917D]">
                         {product.name}
                       </h3>
                     </Link>
                     <div className="mt-2 flex items-center justify-between">
-                      <p className="text-sm font-semibold text-[#8D927B]">
+                      <p className="text-sm font-bold text-[#134B42]">
                         {"\u20B9"}{product.price.toLocaleString("en-IN")}
                       </p>
                       <div className="flex gap-0.5">
@@ -129,8 +129,8 @@ export default function WishlistPage() {
                             key={i}
                             className={`h-3 w-3 ${
                               i < (product.rating || 4)
-                                ? "fill-[#8D927B] text-[#8D927B]"
-                                : "fill-[#D9D2C8]/30 text-[#D9D2C8]/30"
+                                ? "fill-[#EEA83B] text-[#EEA83B]"
+                                : "fill-[#AEBA8A]/30 text-[#AEBA8A]/30"
                             }`}
                           />
                         ))}
@@ -141,7 +141,7 @@ export default function WishlistPage() {
                     <button
                       type="button"
                       onClick={() => addToCart(product.id)}
-                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg border border-[#8D927B]/30 bg-transparent py-2.5 text-xs font-medium uppercase tracking-wider text-[#6E725F] transition-all duration-300 hover:border-[#8D927B] hover:bg-[#8D927B]/10 hover:text-[#8D927B]"
+                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg border-2 border-[#134B42]/30 bg-transparent py-2.5 text-xs font-bold uppercase tracking-wider text-[#134B42] transition-all duration-300 hover:border-[#EEA83B] hover:bg-[#EEA83B] hover:text-[#134B42] hover:scale-[1.02]"
                     >
                       <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
                       Add to Bag

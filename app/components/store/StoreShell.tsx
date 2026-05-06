@@ -27,22 +27,22 @@ function CartPanel() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#6E725F]/60 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-[#134B42]/70 backdrop-blur-sm"
           />
           <motion.aside
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 h-full w-full max-w-md premium-depth-dark border-l border-[#F3EEE8]/10"
+            className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-[#134B42] border-l border-[#EEA83B]/20"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-[#F3EEE8]/10">
-              <h3 className="font-serif text-xl font-light tracking-wide text-[#F3EEE8]">Your Bag</h3>
+            <div className="flex items-center justify-between p-6 border-b border-[#FDFCFA]/10">
+              <h3 className="font-serif text-xl font-light tracking-wide text-[#FDFCFA]">Your Bag</h3>
               <button 
                 type="button" 
                 onClick={closeCart} 
-                className="text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300 text-sm tracking-wider uppercase"
+                className="text-[#FDFCFA]/60 hover:text-[#EEA83B] transition-all duration-300 text-sm tracking-wider uppercase font-medium hover:scale-105"
               >
                 Close
               </button>
@@ -57,10 +57,10 @@ function CartPanel() {
                   className="empty-state-premium mt-16"
                 >
                   <div className="icon-wrapper">
-                    <ShoppingBag className="h-8 w-8 text-[#B8B8A6]/60" strokeWidth={1.5} />
+                    <ShoppingBag className="h-8 w-8 text-[#EEA83B]" strokeWidth={1.5} />
                   </div>
-                  <p className="text-[#F3EEE8]/80 font-serif text-lg mb-2">Your bag is empty</p>
-                  <p className="text-[#F3EEE8]/50 text-sm mb-6">Discover our curated collection</p>
+                  <p className="text-[#FDFCFA] font-serif text-lg mb-2">Your bag is empty</p>
+                  <p className="text-[#FDFCFA]/50 text-sm mb-6">Discover our curated collection</p>
                   <Link
                     href="/shop"
                     onClick={closeCart}
@@ -91,23 +91,23 @@ function CartPanel() {
                             />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-[#F3EEE8] mb-1">{product.name}</p>
-                            <p className="text-sm text-[#B8B8A6] font-medium">
+                            <p className="truncate text-sm font-medium text-[#FDFCFA] mb-1">{product.name}</p>
+                            <p className="text-sm text-[#EEA83B] font-semibold">
                               {"\u20B9"}{product.price.toLocaleString("en-IN")}
                             </p>
                             <div className="mt-3 flex items-center gap-3">
                               <button
                                 type="button"
                                 onClick={() => updateQty(item.id, item.quantity - 1)}
-                                className="h-8 w-8 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80 hover:border-[#B8B8A6]/50 hover:text-[#B8B8A6] transition-all duration-300 flex items-center justify-center text-sm"
+                                className="h-8 w-8 rounded-full border border-[#FDFCFA]/20 text-[#FDFCFA] hover:border-[#EEA83B] hover:text-[#EEA83B] transition-all duration-300 flex items-center justify-center text-sm hover:scale-110"
                               >
                                 -
                               </button>
-                              <span className="text-sm text-[#F3EEE8] w-6 text-center font-medium">{item.quantity}</span>
+                              <span className="text-sm text-[#FDFCFA] w-6 text-center font-medium">{item.quantity}</span>
                               <button
                                 type="button"
                                 onClick={() => updateQty(item.id, item.quantity + 1)}
-                                className="h-8 w-8 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80 hover:border-[#B8B8A6]/50 hover:text-[#B8B8A6] transition-all duration-300 flex items-center justify-center text-sm"
+                                className="h-8 w-8 rounded-full border border-[#FDFCFA]/20 text-[#FDFCFA] hover:border-[#EEA83B] hover:text-[#EEA83B] transition-all duration-300 flex items-center justify-center text-sm hover:scale-110"
                               >
                                 +
                               </button>
@@ -117,7 +117,7 @@ function CartPanel() {
                         <button
                           type="button"
                           onClick={() => removeFromCart(item.id)}
-                          className="mt-3 text-xs text-red-400/80 hover:text-red-400 transition-colors duration-300"
+                          className="mt-3 text-xs text-[#CA763B] hover:text-[#EEA83B] transition-colors duration-300"
                         >
                           Remove
                         </button>
@@ -129,10 +129,10 @@ function CartPanel() {
             </div>
             
             {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#F3EEE8]/10 bg-gradient-to-t from-[#6E725F] to-transparent pt-8">
+            <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#FDFCFA]/10 bg-gradient-to-t from-[#134B42] to-transparent pt-8">
               <div className="mb-4 flex items-center justify-between">
-                <span className="text-[#F3EEE8]/70 text-sm">Subtotal</span>
-                <span className="font-serif text-xl text-[#F3EEE8]">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
+                <span className="text-[#FDFCFA]/70 text-sm">Subtotal</span>
+                <span className="font-serif text-xl text-[#EEA83B]">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
               </div>
               <button
                 type="button"
@@ -160,13 +160,13 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
   ];
 
   return (
-    <div className="min-h-screen premium-depth-dark text-[#FAF8F5] overflow-x-hidden">
+    <div className="min-h-screen bg-[#134B42] text-[#FDFCFA] overflow-x-hidden">
       {/* Premium Header */}
       <header className="sticky top-0 z-30 nav-floating">
         <div className="mx-auto flex h-16 md:h-18 max-w-7xl items-center justify-between px-5 sm:px-6">
           <Link 
             href="/" 
-            className="font-serif text-sm md:text-base font-medium tracking-[0.25em] text-[#F3EEE8] hover:text-[#B8B8A6] transition-colors duration-500"
+            className="font-serif text-sm md:text-base font-medium tracking-[0.25em] text-[#FDFCFA] hover:text-[#EEA83B] transition-all duration-500 hover:scale-105"
           >
             WHAT IF WEAR
           </Link>
@@ -174,14 +174,14 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
             <button
               type="button"
               onClick={openSearch}
-              className="rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              className="rounded-full p-2.5 text-[#FDFCFA]/70 transition-all duration-300 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 hover:scale-110 hover:translate-y-[-2px]"
               aria-label="Search"
             >
               <SearchIcon className="h-[18px] w-[18px]" />
             </button>
             <Link
               href="/wishlist"
-              className="relative rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              className="relative rounded-full p-2.5 text-[#FDFCFA]/70 transition-all duration-300 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 hover:scale-110 hover:translate-y-[-2px]"
               aria-label="Wishlist"
             >
               <HeartIcon className="h-[18px] w-[18px]" />
@@ -189,7 +189,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#EEA83B] text-[9px] font-bold text-[#134B42]"
                 >
                   {wishlistCount}
                 </motion.span>
@@ -198,7 +198,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
             <button
               type="button"
               onClick={openCart}
-              className="relative rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              className="relative rounded-full p-2.5 text-[#FDFCFA]/70 transition-all duration-300 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 hover:scale-110 hover:translate-y-[-2px]"
               aria-label="Cart"
             >
               <CartIcon className="h-[18px] w-[18px]" />
@@ -206,7 +206,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#EEA83B] text-[9px] font-bold text-[#134B42]"
                 >
                   {cartCount}
                 </motion.span>
@@ -214,7 +214,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
             </button>
             <Link 
               href="/profile" 
-              className="rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              className="rounded-full p-2.5 text-[#FDFCFA]/70 transition-all duration-300 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 hover:scale-110 hover:translate-y-[-2px]"
               aria-label="Profile"
             >
               <ProfileIcon className="h-[18px] w-[18px]" />
@@ -223,8 +223,8 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
         </div>
         {showArchiveLabel && (
           <div className="mx-auto max-w-7xl px-5 pb-4 sm:px-6">
-            <h1 className="font-serif text-2xl md:text-3xl font-light tracking-[0.3em] text-[#F3EEE8]">
-              <span className="text-[#B8B8A6]">THE</span> ARCHIVE
+            <h1 className="font-serif text-2xl md:text-3xl font-light tracking-[0.3em] text-[#FDFCFA]">
+              <span className="text-[#EEA83B]">THE</span> ARCHIVE
             </h1>
           </div>
         )}
@@ -246,12 +246,12 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="hidden md:flex fixed bottom-8 right-8 z-20 items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-[#8D927B] to-[#6E725F] text-[#F3EEE8] shadow-[0_8px_32px_rgba(110,114,95,0.4)] transition-all duration-500 hover:scale-105 hover:shadow-[0_12px_40px_rgba(141,146,123,0.5)]"
+        className="hidden md:flex fixed bottom-8 right-8 z-20 items-center justify-center h-14 w-14 rounded-full bg-[#EEA83B] text-[#134B42] shadow-[0_8px_32px_rgba(238,168,59,0.4)] transition-all duration-500 hover:scale-110 hover:translate-y-[-4px] hover:shadow-[0_12px_40px_rgba(238,168,59,0.5)]"
         aria-label="Open cart"
       >
         <CartIcon className="h-5 w-5" />
         {cartCount > 0 && (
-          <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#F3EEE8] text-[10px] font-semibold text-[#6E725F]">
+          <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#134B42] text-[10px] font-bold text-[#FDFCFA]">
             {cartCount}
           </span>
         )}
@@ -271,19 +271,19 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
                 className={`mobile-nav-item relative ${isActive ? 'active' : ''}`}
               >
                 <motion.div
-                  animate={isActive ? { y: -2, scale: 1.1 } : { y: 0, scale: 1 }}
+                  animate={isActive ? { y: -2, scale: 1.15 } : { y: 0, scale: 1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   className="nav-icon"
                 >
                   <Icon 
                     className={`h-5 w-5 transition-all duration-300 ${
-                      isActive ? 'drop-shadow-[0_0_8px_rgba(184,184,166,0.6)]' : ''
+                      isActive ? 'drop-shadow-[0_0_10px_rgba(238,168,59,0.7)]' : ''
                     }`} 
                     strokeWidth={isActive ? 2 : 1.5} 
                   />
                 </motion.div>
                 <span className={`text-[10px] tracking-wider transition-all duration-300 ${
-                  isActive ? 'font-medium' : 'font-normal'
+                  isActive ? 'font-semibold text-[#EEA83B]' : 'font-normal'
                 }`}>
                   {item.label}
                 </span>
@@ -291,7 +291,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
                   <motion.span 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                    className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#EEA83B] text-[9px] font-bold text-[#134B42]"
                   >
                     {item.count}
                   </motion.span>
@@ -299,7 +299,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
                 {isActive && (
                   <motion.div
                     layoutId="activeIndicator"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#B8B8A6]"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#EEA83B]"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -324,7 +324,7 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
               <motion.span 
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#EEA83B] text-[9px] font-bold text-[#134B42]"
               >
                 {cartCount}
               </motion.span>

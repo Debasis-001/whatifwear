@@ -29,8 +29,8 @@ export function ProductCard({ product }: { product: Product }) {
             className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
           />
           
-          {/* Gradient overlay - subtle and premium */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#6E725F]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          {/* Subtle gradient overlay on hover - not color wash */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#134B42]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           
           {/* Wishlist button - premium styling */}
           <motion.button
@@ -68,7 +68,7 @@ export function ProductCard({ product }: { product: Product }) {
             initial={{ opacity: 0, y: 10 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="absolute bottom-3 right-3 z-10 flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-[#8D927B] to-[#6E725F] text-[#F3EEE8] opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg hover:shadow-[0_8px_20px_rgba(110,114,95,0.4)]"
+            className="absolute bottom-3 right-3 z-10 flex items-center justify-center h-10 w-10 rounded-full bg-[#EEA83B] text-[#134B42] opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg hover:shadow-[0_8px_20px_rgba(238,168,59,0.4)] hover:scale-110"
             aria-label={`Add ${product.name} to cart`}
           >
             <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
@@ -76,19 +76,19 @@ export function ProductCard({ product }: { product: Product }) {
 
           {/* New badge for recent items */}
           {product.isNew && (
-            <span className="absolute left-3 top-3 bg-gradient-to-r from-[#8D927B] to-[#6E725F] text-[#F3EEE8] text-[9px] font-semibold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full shadow-md">
+            <span className="absolute left-3 top-3 bg-[#EEA83B] text-[#134B42] text-[9px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full shadow-md">
               New
             </span>
           )}
         </div>
         
         {/* Product Info - enhanced typography and spacing */}
-        <div className="p-4 bg-gradient-to-b from-[#FAF8F5] to-[#F3EEE8] rounded-b-2xl">
-          <p className="truncate text-sm font-medium text-[#6E725F] group-hover:text-[#8D927B] transition-colors duration-500 leading-tight">
+        <div className="p-4 bg-[#FDFCFA] rounded-b-2xl">
+          <p className="truncate text-sm font-semibold text-[#134B42] group-hover:text-[#80917D] transition-colors duration-500 leading-tight">
             {product.name}
           </p>
           <div className="mt-2.5 flex items-center justify-between">
-            <p className="text-sm font-semibold text-[#8D927B]">
+            <p className="text-sm font-bold text-[#134B42]">
               {"\u20B9"}{product.price.toLocaleString("en-IN")}
             </p>
             {/* Rating stars */}
@@ -98,8 +98,8 @@ export function ProductCard({ product }: { product: Product }) {
                   key={i}
                   className={`h-3 w-3 transition-colors duration-300 ${
                     i < (product.rating || 4)
-                      ? "fill-[#8D927B] text-[#8D927B]"
-                      : "fill-[#D9D2C8]/30 text-[#D9D2C8]/30"
+                      ? "fill-[#EEA83B] text-[#EEA83B]"
+                      : "fill-[#AEBA8A]/30 text-[#AEBA8A]/30"
                   }`}
                 />
               ))}
@@ -107,7 +107,7 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
           
           {/* Category tag - subtle */}
-          <p className="mt-2 text-[10px] uppercase tracking-[0.15em] text-[#A79F92]">
+          <p className="mt-2 text-[10px] uppercase tracking-[0.15em] text-[#80917D] font-medium">
             {product.category}
           </p>
         </div>

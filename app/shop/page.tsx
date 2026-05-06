@@ -62,7 +62,7 @@ export default function ShopPage() {
   const hasMore = visibleCount < filtered.length;
 
   return (
-    <div className="min-h-screen bg-[#F3EEE8] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8F6F3] overflow-x-hidden">
       {/* Fixed Navbar - Premium Styling */}
       <nav className="fixed top-0 left-0 right-0 z-50 nav-floating">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
@@ -73,10 +73,10 @@ export default function ShopPage() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-[11px] font-medium transition-all duration-500 tracking-[0.15em] uppercase ${
+                  className={`text-[11px] font-semibold transition-all duration-500 tracking-[0.15em] uppercase hover:translate-y-[-2px] hover:scale-105 ${
                     link.href === "/shop" 
-                      ? "text-[#B8B8A6]" 
-                      : "text-[#F3EEE8]/60 hover:text-[#B8B8A6]"
+                      ? "text-[#EEA83B]" 
+                      : "text-[#FDFCFA]/70 hover:text-[#EEA83B]"
                   }`}
                 >
                   {link.name}
@@ -86,7 +86,7 @@ export default function ShopPage() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-[#F3EEE8] z-50 p-2 rounded-full hover:bg-[#F3EEE8]/5 transition-colors duration-300"
+              className="md:hidden text-[#FDFCFA] z-50 p-2 rounded-full hover:bg-[#FDFCFA]/5 transition-all duration-300 hover:scale-110"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -94,7 +94,7 @@ export default function ShopPage() {
             </button>
 
             {/* Center - Logo */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 font-serif text-lg md:text-xl tracking-[0.25em] text-[#F3EEE8] hover:text-[#B8B8A6] transition-colors duration-500">
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 font-serif text-lg md:text-xl tracking-[0.25em] text-[#FDFCFA] hover:text-[#EEA83B] transition-all duration-500 hover:scale-105">
               WHAT IF WEAR
             </Link>
 
@@ -102,14 +102,14 @@ export default function ShopPage() {
             <div className="hidden md:flex items-center gap-5 flex-1 justify-end">
               <button 
                 onClick={openSearch}
-                className="p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300" 
+                className="p-2.5 rounded-full text-[#FDFCFA]/70 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 transition-all duration-300 hover:scale-110 hover:translate-y-[-2px]" 
                 aria-label="Search"
               >
                 <Search className="h-[18px] w-[18px]" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300" 
+                className="relative p-2.5 rounded-full text-[#FDFCFA]/70 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 transition-all duration-300 hover:scale-110 hover:translate-y-[-2px]" 
                 aria-label="Wishlist"
               >
                 <Heart className="h-[18px] w-[18px]" strokeWidth={1.5} />
@@ -117,7 +117,7 @@ export default function ShopPage() {
                   <motion.span 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute top-0 right-0 bg-[#B8B8A6] text-[#6E725F] text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center"
+                    className="absolute top-0 right-0 bg-[#EEA83B] text-[#134B42] text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
                   >
                     {wishlistCount}
                   </motion.span>
@@ -125,17 +125,17 @@ export default function ShopPage() {
               </Link>
               <Link 
                 href="/profile" 
-                className="relative p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300 group"
+                className="relative p-2.5 rounded-full text-[#FDFCFA]/70 hover:text-[#EEA83B] hover:bg-[#FDFCFA]/5 transition-all duration-300 group hover:scale-110 hover:translate-y-[-2px]"
                 aria-label="Profile"
               >
                 {isAuthenticated && user?.avatar ? (
                   <img 
                     src={user.avatar} 
                     alt={user.name}
-                    className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-[#B8B8A6] transition-all duration-500"
+                    className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-[#EEA83B] transition-all duration-500"
                   />
                 ) : (
-                  <div className="p-0.5 rounded-full border border-[#F3EEE8]/20 group-hover:border-[#B8B8A6]/60 transition-all duration-500">
+                  <div className="p-0.5 rounded-full border border-[#FDFCFA]/30 group-hover:border-[#EEA83B] transition-all duration-500">
                     <User className="h-4 w-4" strokeWidth={1.5} />
                   </div>
                 )}
@@ -146,14 +146,14 @@ export default function ShopPage() {
             <div className="flex md:hidden items-center gap-3">
               <button 
                 onClick={openSearch}
-                className="p-2 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300" 
+                className="p-2 rounded-full text-[#FDFCFA]/70 hover:text-[#EEA83B] transition-all duration-300 hover:scale-110" 
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative p-2 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300" 
+                className="relative p-2 rounded-full text-[#FDFCFA]/70 hover:text-[#EEA83B] transition-all duration-300 hover:scale-110" 
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5" strokeWidth={1.5} />
@@ -169,7 +169,7 @@ export default function ShopPage() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:hidden bg-gradient-to-b from-[#6E725F]/98 to-[#8D927B]/98 backdrop-blur-xl border-t border-[#F3EEE8]/10"
+            className="md:hidden bg-[#134B42]/98 backdrop-blur-xl border-t border-[#EEA83B]/20"
           >
             <div className="px-6 py-8 space-y-2">
               {navLinks.map((link, index) => (
@@ -181,8 +181,8 @@ export default function ShopPage() {
                 >
                   <Link
                     href={link.href}
-                    className={`block py-3 transition-colors duration-300 text-sm tracking-[0.15em] uppercase ${
-                      link.href === "/shop" ? "text-[#B8B8A6]" : "text-[#F3EEE8]/60 hover:text-[#B8B8A6]"
+                    className={`block py-3 transition-all duration-300 text-sm tracking-[0.15em] uppercase font-medium hover:translate-x-2 ${
+                      link.href === "/shop" ? "text-[#EEA83B]" : "text-[#FDFCFA]/70 hover:text-[#EEA83B]"
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -195,7 +195,7 @@ export default function ShopPage() {
         )}
       </nav>
 
-      {/* Premium Hero Banner */}
+      {/* Premium Hero Banner - Clean image, no heavy overlay */}
       <section ref={heroRef} className="relative h-[55vh] md:h-[65vh] overflow-hidden">
         <motion.div style={{ y: parallaxY }} className="absolute inset-0">
           <Image
@@ -206,16 +206,15 @@ export default function ShopPage() {
             priority
           />
         </motion.div>
-        {/* Premium gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#6E725F]/60 via-[#6E725F]/30 to-[#8D927B]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6E725F]/20 via-transparent to-[#6E725F]/20" />
+        {/* Subtle gradient for text readability - not color wash */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#134B42]/50 via-transparent to-[#80917D]/70" />
         
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center pt-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-[#B8B8A6] mb-6"
+            className="text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-[#EEA83B] mb-6 font-semibold"
           >
             Curated Collection
           </motion.span>
@@ -223,7 +222,7 @@ export default function ShopPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[#F3EEE8] leading-[1.1] max-w-4xl"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[#FDFCFA] leading-[1.1] max-w-4xl drop-shadow-lg"
           >
             THE ARCHIVE
           </motion.h1>
@@ -231,7 +230,7 @@ export default function ShopPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="mt-6 md:mt-8 max-w-lg text-sm md:text-base text-[#F3EEE8]/70 leading-relaxed"
+            className="mt-6 md:mt-8 max-w-lg text-sm md:text-base text-[#FDFCFA]/90 leading-relaxed"
           >
             Discover timeless pieces crafted for the modern individual. Each item tells a story of elegance and sophistication.
           </motion.p>
@@ -241,13 +240,13 @@ export default function ShopPage() {
             transition={{ duration: 1, delay: 0.8 }}
             className="mt-8"
           >
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#B8B8A6] to-transparent" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#EEA83B] to-transparent" />
           </motion.div>
         </div>
       </section>
 
       {/* Main Content - Premium blended background */}
-      <main className="bg-gradient-to-b from-[#8D927B] via-[#A79F92] to-[#B8B8A6] py-12 md:py-16 lg:py-20">
+      <main className="bg-gradient-to-b from-[#80917D] via-[#AEBA8A] to-[#F8F6F3] py-12 md:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           {/* Header Section */}
           <motion.div 
@@ -258,27 +257,27 @@ export default function ShopPage() {
           >
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
               <div>
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#F3EEE8]/60 block mb-2">Browse</span>
-                <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#F3EEE8] tracking-wide">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#134B42]/70 block mb-2 font-semibold">Browse</span>
+                <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#134B42] tracking-wide">
                   Explore Collection
                 </h2>
-                <p className="mt-3 text-sm md:text-base text-[#F3EEE8]/60">
+                <p className="mt-3 text-sm md:text-base text-[#134B42]/70">
                   Curated pieces for the modern individual
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs text-[#F3EEE8]/50 uppercase tracking-wider">
+                <span className="text-xs text-[#134B42]/60 uppercase tracking-wider font-medium">
                   {filtered.length} pieces
                 </span>
-                <div className="h-4 w-px bg-[#F3EEE8]/20" />
-                <button className="flex items-center gap-2 text-xs text-[#F3EEE8]/60 hover:text-[#F3EEE8] transition-colors duration-300 group">
+                <div className="h-4 w-px bg-[#134B42]/20" />
+                <button className="flex items-center gap-2 text-xs text-[#134B42]/70 hover:text-[#134B42] transition-all duration-300 group hover:scale-105">
                   <SlidersHorizontal className="h-4 w-4" />
-                  <span className="hidden sm:inline group-hover:text-[#F3EEE8]">Filter</span>
+                  <span className="hidden sm:inline group-hover:text-[#134B42]">Filter</span>
                 </button>
               </div>
             </div>
 
-            {/* Category Tabs - Premium styling */}
+            {/* Category Tabs - Premium styling with golden accent */}
             <div className="flex flex-wrap gap-2 md:gap-3">
               {categoryTabs.map((tab) => {
                 const active = tab === activeCategory;
@@ -290,10 +289,10 @@ export default function ShopPage() {
                       setActiveCategory(tab);
                       setVisibleCount(BATCH);
                     }}
-                    className={`rounded-full border px-5 py-2.5 md:px-6 md:py-3 text-[10px] md:text-xs font-medium uppercase tracking-[0.15em] transition-all duration-500 ${
+                    className={`rounded-full border px-5 py-2.5 md:px-6 md:py-3 text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-500 hover:translate-y-[-2px] hover:scale-105 ${
                       active
-                        ? "border-[#F3EEE8]/40 bg-[#F3EEE8]/15 text-[#F3EEE8] shadow-[0_0_20px_rgba(243,238,232,0.15)]"
-                        : "border-[#F3EEE8]/15 text-[#F3EEE8]/60 hover:border-[#F3EEE8]/30 hover:text-[#F3EEE8] hover:bg-[#F3EEE8]/5"
+                        ? "border-[#EEA83B] bg-[#EEA83B] text-[#134B42] shadow-[0_8px_25px_rgba(238,168,59,0.3)]"
+                        : "border-[#134B42]/30 text-[#134B42]/80 hover:border-[#EEA83B] hover:text-[#134B42] hover:bg-[#EEA83B]/10"
                     }`}
                   >
                     {tab}
@@ -326,27 +325,27 @@ export default function ShopPage() {
           <div ref={loadMoreRef} className="py-12 md:py-16 text-center">
             {hasMore ? (
               <div className="flex items-center justify-center gap-3">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#F3EEE8]/30" />
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#134B42]/30" />
                 <div className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#F3EEE8]/50 animate-pulse" />
-                  <span className="text-xs text-[#F3EEE8]/50 uppercase tracking-[0.2em]">
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#EEA83B] animate-pulse" />
+                  <span className="text-xs text-[#134B42]/60 uppercase tracking-[0.2em] font-medium">
                     Loading more...
                   </span>
                 </div>
-                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#F3EEE8]/30" />
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#134B42]/30" />
               </div>
             ) : (
               <div className="flex flex-col items-center gap-4">
                 <div className="flex items-center justify-center gap-3">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#F3EEE8]/30" />
-                  <span className="text-[10px] text-[#F3EEE8]/60 uppercase tracking-[0.25em]">
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#134B42]/30" />
+                  <span className="text-[10px] text-[#134B42]/60 uppercase tracking-[0.25em] font-medium">
                     End of Collection
                   </span>
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#F3EEE8]/30" />
+                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#134B42]/30" />
                 </div>
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-xs text-[#F3EEE8]/50 hover:text-[#F3EEE8] transition-colors duration-300 group"
+                  className="inline-flex items-center gap-2 text-xs text-[#134B42]/60 hover:text-[#EEA83B] transition-all duration-300 group"
                 >
                   <span>Looking for something specific?</span>
                   <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -367,7 +366,7 @@ export default function ShopPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
         onClick={openCart}
-        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-gradient-to-br from-[#8D927B] to-[#6E725F] text-[#F3EEE8] p-4 md:p-5 rounded-full shadow-[0_8px_32px_rgba(110,114,95,0.4)] transition-all duration-500 hover:scale-105 hover:shadow-[0_12px_40px_rgba(141,146,123,0.5)]"
+        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-[#EEA83B] text-[#134B42] p-4 md:p-5 rounded-full shadow-[0_8px_32px_rgba(238,168,59,0.4)] transition-all duration-500 hover:scale-110 hover:translate-y-[-4px] hover:shadow-[0_12px_40px_rgba(238,168,59,0.5)]"
         aria-label="Shopping Cart"
       >
         <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
@@ -375,7 +374,7 @@ export default function ShopPage() {
           <motion.span 
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 bg-[#F3EEE8] text-[#6E725F] text-[10px] font-semibold w-5 h-5 rounded-full flex items-center justify-center"
+            className="absolute -top-1 -right-1 bg-[#134B42] text-[#FDFCFA] text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center"
           >
             {cartCount}
           </motion.span>
