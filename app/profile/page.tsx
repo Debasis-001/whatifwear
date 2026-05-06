@@ -24,8 +24,8 @@ const orders = [
     product: "Graphite Relaxed Tee",
     status: "Shipped",
     date: "Tracking active",
-    statusColor: "text-[#B8B8A6]",
-    bgColor: "bg-[#B8B8A6]/10",
+    statusColor: "text-[#EEA83B]",
+    bgColor: "bg-[#EEA83B]/10",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function ProfilePage() {
     return (
       <StoreShell>
         <div className="flex items-center justify-center py-32">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#B8B8A6] border-t-transparent" />
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#EEA83B] border-t-transparent" />
         </div>
       </StoreShell>
     );
@@ -68,12 +68,12 @@ export default function ProfilePage() {
           className="empty-state-premium mx-auto max-w-md py-20"
         >
           <div className="icon-wrapper">
-            <User className="h-8 w-8 text-[#B8B8A6]/60" strokeWidth={1.5} />
+            <User className="h-8 w-8 text-[#EEA83B]" strokeWidth={1.5} />
           </div>
-          <h2 className="font-serif text-2xl md:text-3xl font-light text-[#F3EEE8] mb-3">
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-[#FDFCFA] mb-3">
             Sign in to continue
           </h2>
-          <p className="text-[#F3EEE8]/50 text-sm mb-8 max-w-xs">
+          <p className="text-[#FDFCFA]/60 text-sm mb-8 max-w-xs">
             Access your orders, wishlist, and account settings with your personal profile.
           </p>
           <Link
@@ -103,19 +103,19 @@ export default function ProfilePage() {
                 <img
                   src={user.avatar}
                   alt={user.name}
-                  className="h-20 w-20 md:h-24 md:w-24 rounded-full object-cover border-2 border-[#B8B8A6]/30"
+                  className="h-20 w-20 md:h-24 md:w-24 rounded-full object-cover border-2 border-[#EEA83B]/30"
                 />
-                <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-[#6E725F]" />
+                <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-[#134B42]" />
               </div>
             ) : (
-              <div className="flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#B8B8A6]/20 to-[#8D927B]/10 border-2 border-[#B8B8A6]/30">
-                <User className="h-8 w-8 md:h-10 md:w-10 text-[#B8B8A6]" strokeWidth={1.5} />
+              <div className="flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#EEA83B]/20 to-[#CA763B]/10 border-2 border-[#EEA83B]/30">
+                <User className="h-8 w-8 md:h-10 md:w-10 text-[#EEA83B]" strokeWidth={1.5} />
               </div>
             )}
             <div>
-              <h1 className="font-serif text-xl md:text-2xl font-medium text-[#F3EEE8]">{user?.name}</h1>
-              <p className="text-sm text-[#F3EEE8]/50 mt-1">{user?.email}</p>
-              <p className="text-xs text-[#B8B8A6] uppercase tracking-wider mt-2">Member since 2024</p>
+              <h1 className="font-serif text-xl md:text-2xl font-medium text-[#FDFCFA]">{user?.name}</h1>
+              <p className="text-sm text-[#FDFCFA]/60 mt-1">{user?.email}</p>
+              <p className="text-xs text-[#EEA83B] uppercase tracking-wider mt-2 font-semibold">Member since 2024</p>
             </div>
           </div>
         </motion.section>
@@ -138,16 +138,16 @@ export default function ProfilePage() {
               className="card-luxury-dark flex flex-col items-center gap-3 p-4 md:p-6 group"
             >
               <div className="relative">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#B8B8A6]/15 to-[#8D927B]/5 group-hover:from-[#B8B8A6]/25 group-hover:to-[#8D927B]/15 transition-all duration-500">
-                  <stat.icon className="h-5 w-5 text-[#B8B8A6] group-hover:text-[#F3EEE8] transition-colors duration-500" strokeWidth={1.5} />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#EEA83B]/15 to-[#CA763B]/5 group-hover:from-[#EEA83B]/25 group-hover:to-[#CA763B]/15 transition-all duration-500">
+                  <stat.icon className="h-5 w-5 text-[#EEA83B] group-hover:text-[#EEA83B] transition-colors duration-500" strokeWidth={1.5} />
                 </div>
                 {stat.value !== null && stat.value > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#B8B8A6] text-[10px] font-semibold text-[#6E725F]">
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#EEA83B] text-[10px] font-bold text-[#134B42]">
                     {stat.value}
                   </span>
                 )}
               </div>
-              <span className="text-xs text-[#F3EEE8]/70 group-hover:text-[#F3EEE8] transition-colors duration-300">{stat.label}</span>
+              <span className="text-xs text-[#FDFCFA]/80 group-hover:text-[#FDFCFA] transition-colors duration-300">{stat.label}</span>
             </Link>
           ))}
         </motion.section>
@@ -162,10 +162,10 @@ export default function ProfilePage() {
         >
           <div className="flex items-center justify-between mb-5">
             <div>
-              <h2 className="font-serif text-lg md:text-xl font-medium text-[#F3EEE8]">Recent Orders</h2>
-              <p className="text-xs text-[#F3EEE8]/40 mt-1">Track your purchases</p>
+              <h2 className="font-serif text-lg md:text-xl font-medium text-[#FDFCFA]">Recent Orders</h2>
+              <p className="text-xs text-[#FDFCFA]/50 mt-1">Track your purchases</p>
             </div>
-            <Link href="#" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300 uppercase tracking-wider">
+            <Link href="#" className="text-xs text-[#EEA83B] hover:text-[#CA763B] transition-colors duration-300 uppercase tracking-wider font-semibold">
               View All
             </Link>
           </div>
@@ -176,25 +176,25 @@ export default function ProfilePage() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="flex items-center justify-between rounded-xl border border-[#F3EEE8]/8 bg-[#F3EEE8]/[0.02] p-4 transition-all duration-300 hover:border-[#B8B8A6]/20 hover:bg-[#F3EEE8]/[0.04] group cursor-pointer"
+                className="flex items-center justify-between rounded-xl border border-[#FDFCFA]/10 bg-[#FDFCFA]/[0.02] p-4 transition-all duration-300 hover:border-[#EEA83B]/30 hover:bg-[#FDFCFA]/[0.04] group cursor-pointer"
               >
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-[#B8B8A6]/10 to-[#8D927B]/5 flex items-center justify-center">
-                    <Package className="h-5 w-5 text-[#B8B8A6]" strokeWidth={1.5} />
+                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-[#EEA83B]/10 to-[#CA763B]/5 flex items-center justify-center">
+                    <Package className="h-5 w-5 text-[#EEA83B]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#F3EEE8]">#{order.id}</p>
-                    <p className="text-xs text-[#F3EEE8]/50 mt-0.5">{order.product}</p>
+                    <p className="text-sm font-medium text-[#FDFCFA]">#{order.id}</p>
+                    <p className="text-xs text-[#FDFCFA]/60 mt-0.5">{order.product}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <p className={`text-xs font-medium ${order.statusColor} ${order.bgColor} px-2.5 py-1 rounded-full`}>
+                    <p className={`text-xs font-semibold ${order.statusColor} ${order.bgColor} px-2.5 py-1 rounded-full`}>
                       {order.status}
                     </p>
-                    <p className="text-[10px] text-[#F3EEE8]/40 mt-1.5">{order.date}</p>
+                    <p className="text-[10px] text-[#FDFCFA]/50 mt-1.5">{order.date}</p>
                   </div>
-                  <ChevronRight className="h-4 w-4 text-[#F3EEE8]/30 group-hover:text-[#B8B8A6] group-hover:translate-x-1 transition-all duration-300" />
+                  <ChevronRight className="h-4 w-4 text-[#FDFCFA]/30 group-hover:text-[#EEA83B] group-hover:translate-x-1 transition-all duration-300" />
                 </div>
               </motion.div>
             ))}
@@ -210,10 +210,10 @@ export default function ProfilePage() {
           >
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="font-serif text-lg md:text-xl font-medium text-[#F3EEE8]">Saved Items</h2>
-                <p className="text-xs text-[#F3EEE8]/40 mt-1">Your wishlist favorites</p>
+                <h2 className="font-serif text-lg md:text-xl font-medium text-[#FDFCFA]">Saved Items</h2>
+                <p className="text-xs text-[#FDFCFA]/50 mt-1">Your wishlist favorites</p>
               </div>
-              <Link href="/wishlist" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300 uppercase tracking-wider">
+              <Link href="/wishlist" className="text-xs text-[#EEA83B] hover:text-[#CA763B] transition-colors duration-300 uppercase tracking-wider font-semibold">
                 View All
               </Link>
             </div>
@@ -240,23 +240,23 @@ export default function ProfilePage() {
           id="settings"
           className="space-y-2"
         >
-          <h2 className="font-serif text-lg font-medium text-[#F3EEE8] mb-4">Account</h2>
+          <h2 className="font-serif text-lg font-medium text-[#FDFCFA] mb-4">Account</h2>
           {menuItems.map((item, index) => (
             <Link
               key={item.label}
               href={item.href}
-              className="flex items-center justify-between rounded-xl border border-[#F3EEE8]/8 bg-[#F3EEE8]/[0.02] p-4 transition-all duration-300 hover:border-[#B8B8A6]/20 hover:bg-[#F3EEE8]/[0.04] group"
+              className="flex items-center justify-between rounded-xl border border-[#FDFCFA]/10 bg-[#FDFCFA]/[0.02] p-4 transition-all duration-300 hover:border-[#EEA83B]/30 hover:bg-[#FDFCFA]/[0.04] group"
             >
               <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#B8B8A6]/10 to-[#8D927B]/5 group-hover:from-[#B8B8A6]/20 group-hover:to-[#8D927B]/10 transition-all duration-500">
-                  <item.icon className="h-4 w-4 text-[#B8B8A6]" strokeWidth={1.5} />
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#EEA83B]/10 to-[#CA763B]/5 group-hover:from-[#EEA83B]/20 group-hover:to-[#CA763B]/10 transition-all duration-500">
+                  <item.icon className="h-4 w-4 text-[#EEA83B]" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#F3EEE8] group-hover:text-[#B8B8A6] transition-colors duration-300">{item.label}</p>
-                  <p className="text-xs text-[#F3EEE8]/40">{item.description}</p>
+                  <p className="text-sm font-medium text-[#FDFCFA] group-hover:text-[#EEA83B] transition-colors duration-300">{item.label}</p>
+                  <p className="text-xs text-[#FDFCFA]/50">{item.description}</p>
                 </div>
               </div>
-              <ChevronRight className="h-4 w-4 text-[#F3EEE8]/30 group-hover:text-[#B8B8A6] group-hover:translate-x-1 transition-all duration-300" />
+              <ChevronRight className="h-4 w-4 text-[#FDFCFA]/30 group-hover:text-[#EEA83B] group-hover:translate-x-1 transition-all duration-300" />
             </Link>
           ))}
         </motion.section>
@@ -270,13 +270,13 @@ export default function ProfilePage() {
           <button
             type="button"
             onClick={handleLogout}
-            className="w-full flex items-center justify-between rounded-xl border border-red-400/20 bg-red-500/5 px-5 py-4 text-sm text-red-400 transition-all duration-300 hover:bg-red-500/10 hover:border-red-400/30 group"
+            className="w-full flex items-center justify-between rounded-xl border border-red-400/30 bg-red-500/10 px-5 py-4 text-sm text-red-400 transition-all duration-300 hover:bg-red-500/15 hover:border-red-400/40 group"
           >
             <span className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10 group-hover:bg-red-500/15 transition-colors duration-300">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/15 group-hover:bg-red-500/20 transition-colors duration-300">
                 <LogOut className="h-4 w-4" strokeWidth={1.5} />
               </div>
-              <span>Sign Out</span>
+              <span className="font-medium">Sign Out</span>
             </span>
             <ChevronRight className="h-4 w-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
           </button>

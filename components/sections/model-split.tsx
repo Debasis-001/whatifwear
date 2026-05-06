@@ -33,7 +33,7 @@ export function ModelSplit() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1.08, 1])
 
   return (
-    <section ref={containerRef} className="relative bg-gradient-to-b from-[#B8B8A6] to-[#D9D2C8] py-16 md:py-0">
+    <section ref={containerRef} className="relative bg-gradient-to-b from-[#AEBA8A] to-[#F8F6F3] py-16 md:py-0">
       <div className="grid md:grid-cols-2">
         {/* Left - Models Grid */}
         <div className="relative overflow-hidden">
@@ -50,13 +50,13 @@ export function ModelSplit() {
                   />
                   {/* Vertical Line */}
                   {index < 2 && (
-                    <div className="absolute right-0 top-0 h-full w-px bg-[#8D927B]/40" />
+                    <div className="absolute right-0 top-0 h-full w-px bg-[#EEA83B]/40" />
                   )}
                 </div>
               ))}
             </div>
             {/* Horizontal Line */}
-            <div className="absolute left-0 top-1/2 w-full h-px bg-[#8D927B]/40" />
+            <div className="absolute left-0 top-1/2 w-full h-px bg-[#EEA83B]/40" />
             
             {/* Overlay Text */}
             <motion.div 
@@ -66,12 +66,12 @@ export function ModelSplit() {
               transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
               className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10"
             >
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#FAF8F5] font-light leading-[1.1] tracking-wide drop-shadow-lg">
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#FDFCFA] font-light leading-[1.1] tracking-wide drop-shadow-lg">
                 OVERSIZED
                 <br />
                 COLLECTION
               </h3>
-              <p className="mt-2 md:mt-3 text-[10px] md:text-xs text-[#FAF8F5]/80 tracking-[0.2em] uppercase drop-shadow">Your Favorite Style</p>
+              <p className="mt-2 md:mt-3 text-[10px] md:text-xs text-[#EEA83B] tracking-[0.2em] uppercase drop-shadow font-semibold">Your Favorite Style</p>
             </motion.div>
           </motion.div>
         </div>
@@ -82,18 +82,18 @@ export function ModelSplit() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col justify-center bg-[#D9D2C8] px-8 py-14 md:px-14 md:py-20 lg:px-24 lg:py-0"
+          className="flex flex-col justify-center bg-[#F8F6F3] px-8 py-14 md:px-14 md:py-20 lg:px-24 lg:py-0"
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-[#8D927B] mb-4">Premium Summer</span>
-          <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#6E725F] mb-6 relative w-fit after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-10 after:h-px after:bg-[#8D927B]">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#EEA83B] mb-4 font-semibold">Premium Summer</span>
+          <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#134B42] mb-6 relative w-fit after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-10 after:h-[2px] after:bg-[#EEA83B]">
             Effortless Style
           </h3>
-          <p className="text-sm md:text-base text-[#6E725F]/70 max-w-sm leading-[1.8] mb-8 md:mb-12">
+          <p className="text-sm md:text-base text-[#134B42]/80 max-w-sm leading-[1.8] mb-8 md:mb-12">
             Explore 100s on-trend styles with brand-new drops that are stylish and comfortable. Designed for those who appreciate quality.
           </p>
           <Link
             href="/shop"
-            className="inline-block border border-[#6E725F] bg-transparent px-10 py-4 text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#6E725F] w-fit transition-all duration-500 hover:bg-[#6E725F] hover:text-[#F3EEE8]"
+            className="inline-block border-2 border-[#134B42] bg-transparent px-10 py-4 text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#134B42] w-fit transition-all duration-500 hover:bg-[#134B42] hover:text-[#FDFCFA] font-bold hover:scale-105 hover:translate-y-[-2px] hover:shadow-[0_8px_25px_rgba(19,75,66,0.2)]"
           >
             <span>Shop Collection</span>
           </Link>

@@ -32,12 +32,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#8D927B] via-[#6E725F] to-[#8D927B]">
+    <div className="min-h-screen bg-gradient-to-br from-[#134B42] via-[#80917D] to-[#134B42]">
       {/* Back to Home */}
       <nav className="absolute top-0 left-0 right-0 z-50 px-6 md:px-10 py-6">
         <Link 
           href="/" 
-          className="inline-flex items-center gap-3 text-sm font-medium tracking-[0.2em] text-[#F3EEE8]/70 hover:text-[#F3EEE8] transition-colors duration-300"
+          className="inline-flex items-center gap-3 text-sm font-semibold tracking-[0.2em] text-[#FDFCFA]/80 hover:text-[#EEA83B] transition-all duration-300 hover:translate-x-[-4px]"
         >
           <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
           <span className="font-serif tracking-[0.25em]">WHAT IF WEAR</span>
@@ -57,9 +57,8 @@ export default function LoginPage() {
             alt="Lifestyle fashion"
             className="absolute inset-0 h-full w-full object-cover"
           />
-          {/* Premium gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#6E725F]/40 via-[#6E725F]/20 to-[#6E725F]/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#6E725F]/80 via-transparent to-[#6E725F]/30" />
+          {/* Subtle gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#134B42]/40 via-transparent to-[#134B42]/60" />
           
           {/* Overlay Content */}
           <div className="absolute bottom-16 left-12 right-12 z-10">
@@ -68,13 +67,13 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <span className="text-[10px] uppercase tracking-[0.4em] text-[#B8B8A6]">Welcome Back</span>
-              <h2 className="mt-5 font-serif text-4xl xl:text-5xl font-light text-[#F3EEE8] leading-[1.15]">
+              <span className="text-[10px] uppercase tracking-[0.4em] text-[#EEA83B] font-semibold">Welcome Back</span>
+              <h2 className="mt-5 font-serif text-4xl xl:text-5xl font-light text-[#FDFCFA] leading-[1.15] drop-shadow-lg">
                 Continue Your
                 <br />
                 <span className="italic">Style Journey</span>
               </h2>
-              <p className="mt-5 text-sm text-[#F3EEE8]/60 max-w-sm leading-[1.8]">
+              <p className="mt-5 text-sm text-[#FDFCFA]/80 max-w-sm leading-[1.8]">
                 Sign in to access your wishlist, track orders, and unlock exclusive member benefits.
               </p>
             </motion.div>
@@ -95,7 +94,7 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-[10px] uppercase tracking-[0.4em] text-[#B8B8A6]"
+                className="text-[10px] uppercase tracking-[0.4em] text-[#EEA83B] font-semibold"
               >
                 {mode === "login" ? "Welcome Back" : "Join Us"}
               </motion.span>
@@ -103,7 +102,7 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="mt-4 font-serif text-3xl md:text-4xl font-light text-[#F3EEE8]"
+                className="mt-4 font-serif text-3xl md:text-4xl font-light text-[#FDFCFA]"
               >
                 {mode === "login" ? "Sign In" : "Create Account"}
               </motion.h1>
@@ -111,7 +110,7 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="mt-3 text-sm text-[#F3EEE8]/50 leading-relaxed"
+                className="mt-3 text-sm text-[#FDFCFA]/70 leading-relaxed"
               >
                 {mode === "login" 
                   ? "Enter your details to continue shopping." 
@@ -124,15 +123,15 @@ export default function LoginPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="mt-10 flex rounded-xl border border-[#F3EEE8]/10 p-1.5 bg-[#F3EEE8]/[0.02]"
+              className="mt-10 flex rounded-xl border border-[#FDFCFA]/15 p-1.5 bg-[#FDFCFA]/[0.03]"
             >
               <button
                 type="button"
                 onClick={() => setMode("login")}
                 className={`flex-1 rounded-lg py-3 text-xs uppercase tracking-[0.2em] transition-all duration-500 ${
                   mode === "login" 
-                    ? "bg-[#B8B8A6] text-[#6E725F] font-medium shadow-lg" 
-                    : "text-[#F3EEE8]/50 hover:text-[#F3EEE8]"
+                    ? "bg-[#EEA83B] text-[#134B42] font-bold shadow-lg" 
+                    : "text-[#FDFCFA]/60 hover:text-[#FDFCFA]"
                 }`}
               >
                 Sign In
@@ -142,8 +141,8 @@ export default function LoginPage() {
                 onClick={() => setMode("signup")}
                 className={`flex-1 rounded-lg py-3 text-xs uppercase tracking-[0.2em] transition-all duration-500 ${
                   mode === "signup" 
-                    ? "bg-[#B8B8A6] text-[#6E725F] font-medium shadow-lg" 
-                    : "text-[#F3EEE8]/50 hover:text-[#F3EEE8]"
+                    ? "bg-[#EEA83B] text-[#134B42] font-bold shadow-lg" 
+                    : "text-[#FDFCFA]/60 hover:text-[#FDFCFA]"
                 }`}
               >
                 Sign Up
@@ -161,7 +160,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGoogleLogin}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 rounded-xl border border-[#F3EEE8]/12 bg-[#F3EEE8]/[0.03] px-5 py-4 text-sm text-[#F3EEE8] hover:border-[#B8B8A6]/40 hover:bg-[#F3EEE8]/[0.06] transition-all duration-500 disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-3 rounded-xl border border-[#FDFCFA]/15 bg-[#FDFCFA]/[0.03] px-5 py-4 text-sm text-[#FDFCFA] hover:border-[#EEA83B]/40 hover:bg-[#FDFCFA]/[0.06] transition-all duration-500 disabled:opacity-50 hover:scale-[1.02]"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24">
                   <path
@@ -192,10 +191,10 @@ export default function LoginPage() {
               className="relative my-8"
             >
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-[#F3EEE8]/10"></div>
+                <div className="w-full border-t border-[#FDFCFA]/15"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-gradient-to-r from-[#8D927B] via-[#6E725F] to-[#8D927B] px-5 text-[#F3EEE8]/40 tracking-[0.2em]">
+                <span className="bg-gradient-to-r from-[#134B42] via-[#80917D] to-[#134B42] px-5 text-[#FDFCFA]/50 tracking-[0.2em]">
                   or continue with email
                 </span>
               </div>
@@ -211,7 +210,7 @@ export default function LoginPage() {
             >
               {mode === "signup" && (
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Full Name</label>
+                  <label className="block text-[10px] uppercase tracking-[0.2em] text-[#FDFCFA]/60 mb-2.5 font-semibold">Full Name</label>
                   <input
                     type="text"
                     value={name}
@@ -222,7 +221,7 @@ export default function LoginPage() {
                 </div>
               )}
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Email Address</label>
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#FDFCFA]/60 mb-2.5 font-semibold">Email Address</label>
                 <input
                   type="email"
                   value={email}
@@ -233,7 +232,7 @@ export default function LoginPage() {
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Password</label>
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#FDFCFA]/60 mb-2.5 font-semibold">Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
@@ -246,7 +245,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#F3EEE8]/40 hover:text-[#F3EEE8]/70 transition-colors duration-300"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FDFCFA]/50 hover:text-[#EEA83B] transition-colors duration-300"
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" strokeWidth={1.5} />
@@ -259,7 +258,7 @@ export default function LoginPage() {
 
               {mode === "login" && (
                 <div className="flex justify-end">
-                  <button type="button" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">
+                  <button type="button" className="text-xs text-[#EEA83B] hover:text-[#CA763B] transition-colors duration-300">
                     Forgot password?
                   </button>
                 </div>
@@ -272,7 +271,7 @@ export default function LoginPage() {
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-3">
-                    <span className="h-4 w-4 border-2 border-[#6E725F]/30 border-t-[#6E725F] rounded-full animate-spin" />
+                    <span className="h-4 w-4 border-2 border-[#134B42]/30 border-t-[#134B42] rounded-full animate-spin" />
                     Please wait...
                   </span>
                 ) : (
@@ -285,12 +284,12 @@ export default function LoginPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="mt-10 text-center text-[10px] text-[#F3EEE8]/40 leading-relaxed"
+              className="mt-10 text-center text-[10px] text-[#FDFCFA]/50 leading-relaxed"
             >
               By continuing, you agree to our{" "}
-              <Link href="#" className="text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">Terms of Service</Link>
+              <Link href="#" className="text-[#EEA83B] hover:text-[#CA763B] transition-colors duration-300">Terms of Service</Link>
               {" "}and{" "}
-              <Link href="#" className="text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">Privacy Policy</Link>
+              <Link href="#" className="text-[#EEA83B] hover:text-[#CA763B] transition-colors duration-300">Privacy Policy</Link>
             </motion.p>
           </div>
         </motion.div>
