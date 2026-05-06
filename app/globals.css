@@ -136,18 +136,44 @@
   }
 }
 
-/* Smooth scroll behavior */
+/* Global overflow containment - Fix horizontal scroll issues */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Premium Swiper Styles */
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure all sections don't cause horizontal overflow */
+section {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Premium Swiper Styles - Contained within viewport */
+.featured-swiper {
+  overflow: visible !important;
+}
+
+.featured-swiper .swiper-wrapper {
+  align-items: center;
+}
+
 .featured-swiper .swiper-slide {
   transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .featured-swiper .swiper-slide-active {
   z-index: 10;
+}
+
+/* Carousel container containment */
+.carousel-container {
+  overflow: hidden;
+  max-width: 100%;
 }
 
 /* Custom selection color */

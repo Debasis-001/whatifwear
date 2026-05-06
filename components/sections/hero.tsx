@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X, Search, Heart, ShoppingBag } from "lucide-react"
+import { Menu, X, Search, Heart, ShoppingBag, User } from "lucide-react"
 import { useStore } from "@/app/context/store-context"
+import { useAuth } from "@/app/context/auth-context"
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -16,6 +17,7 @@ const navLinks = [
 export function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { openSearch, wishlistCount, cartCount, openCart } = useStore()
+  const { user, isAuthenticated } = useAuth()
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -114,10 +116,30 @@ export function Hero() {
                   </span>
                 )}
               </Link>
+              <Link 
+                href="/profile" 
+                className="relative text-white/70 hover:text-gold transition-all duration-500 group"
+                aria-label="Profile"
+              >
+                {isAuthenticated && user?.avatar ? (
+                  <div className="relative">
+                    <img 
+                      src={user.avatar} 
+                      alt={user.name}
+                      className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-gold transition-all duration-500"
+                    />
+                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-black" />
+                  </div>
+                ) : (
+                  <div className="relative p-1 rounded-full border border-white/20 group-hover:border-gold/60 transition-all duration-500">
+                    <User className="h-4 w-4" strokeWidth={1.5} />
+                  </div>
+                )}
+              </Link>
             </motion.div>
 
             {/* Mobile Icons */}
-            <div className="flex md:hidden items-center gap-5">
+            <div className="flex md:hidden items-center gap-4">
               <button 
                 onClick={openSearch}
                 className="text-white/70 hover:text-gold transition-colors duration-500" 
@@ -135,6 +157,23 @@ export function Hero() {
                   <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
                     {wishlistCount}
                   </span>
+                )}
+              </Link>
+              <Link 
+                href="/profile" 
+                className="relative text-white/70 hover:text-gold transition-all duration-500"
+                aria-label="Profile"
+              >
+                {isAuthenticated && user?.avatar ? (
+                  <img 
+                    src={user.avatar} 
+                    alt={user.name}
+                    className="h-6 w-6 rounded-full object-cover border border-gold/50"
+                  />
+                ) : (
+                  <div className="p-1 rounded-full border border-white/20">
+                    <User className="h-4 w-4" strokeWidth={1.5} />
+                  </div>
                 )}
               </Link>
             </div>
