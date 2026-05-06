@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
     >
       <Link
         href={`/product/${product.id}`}
-        className="block overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] shadow-[0_8px_30px_rgba(0,0,0,0.28)] transition-all duration-700 hover:border-gold/40 hover:shadow-[0_0_35px_rgba(201,169,98,0.2)]"
+        className="block overflow-hidden rounded-xl border border-[#F3EEE8]/10 bg-[#FAF8F5] shadow-[0_8px_30px_rgba(110,114,95,0.15)] transition-all duration-700 hover:border-[#8D927B]/40 hover:shadow-[0_0_35px_rgba(141,146,123,0.2)]"
       >
         <div className="relative aspect-[3/4] overflow-hidden">
           <img
@@ -29,7 +29,7 @@ export function ProductCard({ product }: { product: Product }) {
           />
           
           {/* Premium gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#6E725F]/70 via-[#6E725F]/0 to-[#6E725F]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Wishlist button */}
           <button
@@ -40,10 +40,10 @@ export function ProductCard({ product }: { product: Product }) {
               toggleWishlist(product.id);
             }}
             aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className={`absolute right-3 top-3 z-10 rounded-full border bg-black/50 p-2.5 backdrop-blur-sm transition-all duration-500 hover:scale-110 ${
+            className={`absolute right-3 top-3 z-10 rounded-full border bg-[#6E725F]/50 p-2.5 backdrop-blur-sm transition-all duration-500 hover:scale-110 ${
               isWishlisted 
-                ? "border-gold/50 text-gold bg-gold/20" 
-                : "border-white/20 text-white/85 hover:border-gold/50 hover:text-gold hover:bg-black/70"
+                ? "border-[#8D927B]/50 text-[#B8B8A6] bg-[#8D927B]/20" 
+                : "border-[#F3EEE8]/20 text-[#F3EEE8]/85 hover:border-[#8D927B]/50 hover:text-[#B8B8A6] hover:bg-[#6E725F]/70"
             }`}
           >
             <motion.div
@@ -64,7 +64,7 @@ export function ProductCard({ product }: { product: Product }) {
             }}
             initial={{ opacity: 0, y: 10 }}
             whileHover={{ scale: 1.05 }}
-            className="absolute bottom-3 right-3 z-10 p-2.5 bg-gold rounded-full text-charcoal opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-gold/90 shadow-lg"
+            className="absolute bottom-3 right-3 z-10 p-2.5 bg-[#8D927B] rounded-full text-[#F3EEE8] opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-[#6E725F] shadow-lg"
             aria-label={`Add ${product.name} to cart`}
           >
             <ShoppingBag className="h-4 w-4" strokeWidth={2} />
@@ -72,18 +72,18 @@ export function ProductCard({ product }: { product: Product }) {
 
           {/* New badge for recent items */}
           {product.isNew && (
-            <span className="absolute left-3 top-3 bg-gold text-charcoal text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+            <span className="absolute left-3 top-3 bg-[#8D927B] text-[#F3EEE8] text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
               New
             </span>
           )}
         </div>
         
-        <div className="p-4 bg-gradient-to-b from-charcoal/50 to-charcoal">
-          <p className="truncate text-sm font-medium text-white group-hover:text-gold transition-colors duration-500">
+        <div className="p-4 bg-[#FAF8F5]">
+          <p className="truncate text-sm font-medium text-[#6E725F] group-hover:text-[#8D927B] transition-colors duration-500">
             {product.name}
           </p>
           <div className="mt-2 flex items-center justify-between">
-            <p className="text-sm text-white/60">{"\u20B9"}{product.price.toLocaleString("en-IN")}</p>
+            <p className="text-sm text-[#A79F92]">{"\u20B9"}{product.price.toLocaleString("en-IN")}</p>
             {/* Rating stars */}
             <div className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -91,8 +91,8 @@ export function ProductCard({ product }: { product: Product }) {
                   key={i}
                   className={`h-3 w-3 ${
                     i < (product.rating || 4)
-                      ? "fill-gold text-gold"
-                      : "text-white/20"
+                      ? "fill-[#8D927B] text-[#8D927B]"
+                      : "text-[#A79F92]/20"
                   }`}
                 />
               ))}

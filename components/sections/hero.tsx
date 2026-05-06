@@ -36,9 +36,9 @@ export function Hero() {
             type="video/mp4"
           />
         </video>
-        {/* Premium Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
+        {/* Premium Earthy Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6E725F]/70 via-[#8D927B]/40 to-[#6E725F]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6E725F]/30 via-transparent to-[#6E725F]/30" />
       </div>
 
       {/* Navbar */}
@@ -61,7 +61,7 @@ export function Hero() {
                 >
                   <Link
                     href={link.href}
-                    className="text-[11px] font-medium text-white/70 hover:text-gold transition-colors duration-500 tracking-[0.15em] uppercase"
+                    className="text-[11px] font-medium text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500 tracking-[0.15em] uppercase"
                   >
                     {link.name}
                   </Link>
@@ -99,26 +99,26 @@ export function Hero() {
             >
               <button 
                 onClick={openSearch}
-                className="text-white/70 hover:text-gold transition-colors duration-500" 
+                className="text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500" 
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative text-white/70 hover:text-gold transition-colors duration-500" 
+                className="relative text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500" 
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5" strokeWidth={1.5} />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-olive text-[#F3EEE8] text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
               <Link 
                 href="/profile" 
-                className="relative text-white/70 hover:text-gold transition-all duration-500 group"
+                className="relative text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-all duration-500 group"
                 aria-label="Profile"
               >
                 {isAuthenticated && user?.avatar ? (
@@ -126,12 +126,12 @@ export function Hero() {
                     <img 
                       src={user.avatar} 
                       alt={user.name}
-                      className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-gold transition-all duration-500"
+                      className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-[#B8B8A6] transition-all duration-500"
                     />
-                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-black" />
+                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#8D927B] rounded-full border-2 border-[#6E725F]" />
                   </div>
                 ) : (
-                  <div className="relative p-1 rounded-full border border-white/20 group-hover:border-gold/60 transition-all duration-500">
+                  <div className="relative p-1 rounded-full border border-[#F3EEE8]/20 group-hover:border-[#B8B8A6]/60 transition-all duration-500">
                     <User className="h-4 w-4" strokeWidth={1.5} />
                   </div>
                 )}
@@ -142,36 +142,36 @@ export function Hero() {
             <div className="flex md:hidden items-center gap-4">
               <button 
                 onClick={openSearch}
-                className="text-white/70 hover:text-gold transition-colors duration-500" 
+                className="text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500" 
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative text-white/70 hover:text-gold transition-colors duration-500" 
+                className="relative text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500" 
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5" strokeWidth={1.5} />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-olive text-[#F3EEE8] text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
               <Link 
                 href="/profile" 
-                className="relative text-white/70 hover:text-gold transition-all duration-500"
+                className="relative text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-all duration-500"
                 aria-label="Profile"
               >
                 {isAuthenticated && user?.avatar ? (
                   <img 
                     src={user.avatar} 
                     alt={user.name}
-                    className="h-6 w-6 rounded-full object-cover border border-gold/50"
+                    className="h-6 w-6 rounded-full object-cover border border-[#B8B8A6]/50"
                   />
                 ) : (
-                  <div className="p-1 rounded-full border border-white/20">
+                  <div className="p-1 rounded-full border border-[#F3EEE8]/20">
                     <User className="h-4 w-4" strokeWidth={1.5} />
                   </div>
                 )}
@@ -187,14 +187,14 @@ export function Hero() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:hidden bg-black/95 backdrop-blur-md"
+            className="md:hidden bg-[#6E725F]/95 backdrop-blur-md"
           >
             <div className="px-8 py-8 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="block py-4 text-white/70 hover:text-gold transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
+                  className="block py-4 text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -202,7 +202,7 @@ export function Hero() {
               ))}
               <Link
                 href="/wishlist"
-                className="block py-4 text-white/70 hover:text-gold transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
+                className="block py-4 text-[#F3EEE8]/70 hover:text-[#B8B8A6] transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
@@ -218,7 +218,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8 md:mb-10 text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold"
+          className="mb-8 md:mb-10 text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-[#B8B8A6]"
         >
           Summer Collection 2026
         </motion.p>
@@ -247,7 +247,7 @@ export function Hero() {
         >
           <Link
             href="/shop"
-            className="btn-luxury inline-block border border-gold/60 bg-transparent px-12 md:px-14 py-4 md:py-[18px] text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-white"
+            className="btn-luxury inline-block border border-[#F3EEE8]/60 bg-transparent px-12 md:px-14 py-4 md:py-[18px] text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-[#F3EEE8] hover:bg-[#F3EEE8]/10"
           >
             <span>View Collection</span>
           </Link>
@@ -264,12 +264,12 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-          className="h-12 md:h-14 w-6 md:w-7 rounded-full border border-white/25 flex items-start justify-center p-2"
+          className="h-12 md:h-14 w-6 md:w-7 rounded-full border border-[#F3EEE8]/25 flex items-start justify-center p-2"
         >
           <motion.div 
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="h-2 w-1 rounded-full bg-gold/60" 
+            className="h-2 w-1 rounded-full bg-[#B8B8A6]/60" 
           />
         </motion.div>
       </motion.div>
@@ -280,12 +280,12 @@ export function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.4, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         onClick={openCart}
-        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-gold text-charcoal p-4 md:p-5 rounded-full shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,169,98,0.4)]"
+        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-olive text-[#F3EEE8] p-4 md:p-5 rounded-full shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(141,146,123,0.4)]"
         aria-label="Shopping Cart"
       >
         <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
         {cartCount > 0 && (
-          <span className="absolute -top-1 -right-1 bg-charcoal text-gold text-[10px] font-medium w-5 h-5 rounded-full flex items-center justify-center">
+          <span className="absolute -top-1 -right-1 bg-[#6E725F] text-[#F3EEE8] text-[10px] font-medium w-5 h-5 rounded-full flex items-center justify-center">
             {cartCount}
           </span>
         )}

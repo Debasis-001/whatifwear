@@ -18,7 +18,7 @@ export function Newsletter() {
   }
 
   return (
-    <section className="bg-background-dark py-20 md:py-28 lg:py-32">
+    <section className="bg-gradient-to-b from-[#D9D2C8] to-[#8D927B] py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-2xl px-8 md:px-12 text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -26,11 +26,11 @@ export function Newsletter() {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Stay Connected</span>
-          <h2 className="mt-4 font-serif text-2xl md:text-3xl lg:text-4xl font-light text-foreground-light tracking-wide">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#6E725F]">Stay Connected</span>
+          <h2 className="mt-4 font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#6E725F] tracking-wide">
             Join Our Newsletter
           </h2>
-          <p className="mt-5 md:mt-6 text-sm md:text-base text-white/60 leading-[1.7]">
+          <p className="mt-5 md:mt-6 text-sm md:text-base text-[#6E725F]/70 leading-[1.7]">
             Subscribe to receive updates, access to exclusive deals, and more.
           </p>
 
@@ -42,12 +42,12 @@ export function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="flex-1 px-5 py-4 text-sm bg-white/5 border border-white/20 text-white rounded-sm placeholder:text-white/40 focus:outline-none focus:border-gold/50 transition-all duration-500"
+                className="flex-1 px-5 py-4 text-sm bg-[#FAF8F5]/80 border border-[#A79F92]/30 text-[#6E725F] rounded-sm placeholder:text-[#A79F92] focus:outline-none focus:border-[#8D927B] transition-all duration-500"
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="px-10 py-4 text-xs uppercase tracking-[0.2em] bg-gold text-charcoal rounded-sm overflow-hidden transition-all duration-500 hover:bg-gold/90 disabled:opacity-50 font-medium"
+                className="px-10 py-4 text-xs uppercase tracking-[0.2em] bg-[#6E725F] text-[#F3EEE8] rounded-sm overflow-hidden transition-all duration-500 hover:bg-[#6E725F]/90 disabled:opacity-50 font-medium"
               >
                 {status === "loading" ? "..." : "Subscribe"}
               </button>
@@ -57,7 +57,7 @@ export function Newsletter() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                className="mt-5 text-sm text-gold"
+                className="mt-5 text-sm text-[#6E725F]"
               >
                 Thank you for subscribing!
               </motion.p>

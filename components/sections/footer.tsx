@@ -28,7 +28,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-ivory">
+    <footer className="bg-[#6E725F] text-[#F3EEE8]">
       <div className="mx-auto max-w-7xl px-8 md:px-12 py-16 md:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -39,7 +39,7 @@ export function Footer() {
         >
           {/* About Us */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-[#B8B8A6] uppercase tracking-[0.2em]">
               About Us
             </h3>
             <ul className="space-y-3 md:space-y-4">
@@ -47,7 +47,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs md:text-sm text-ivory/60 hover:text-gold transition-colors duration-500"
+                    className="text-xs md:text-sm text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-500"
                   >
                     {link.name}
                   </Link>
@@ -58,7 +58,7 @@ export function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-[#B8B8A6] uppercase tracking-[0.2em]">
               Customer Care
             </h3>
             <ul className="space-y-3 md:space-y-4">
@@ -66,7 +66,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs md:text-sm text-ivory/60 hover:text-gold transition-colors duration-500"
+                    className="text-xs md:text-sm text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-500"
                   >
                     {link.name}
                   </Link>
@@ -77,10 +77,10 @@ export function Footer() {
 
           {/* Follow Us */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-[#B8B8A6] uppercase tracking-[0.2em]">
               Follow Us
             </h3>
-            <p className="text-xs md:text-sm text-ivory/60 mb-5 md:mb-6 leading-[1.7]">
+            <p className="text-xs md:text-sm text-[#F3EEE8]/60 mb-5 md:mb-6 leading-[1.7]">
               For exclusive news and updates
             </p>
             <div className="flex gap-5">
@@ -88,7 +88,7 @@ export function Footer() {
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="text-ivory/50 hover:text-gold transition-colors duration-500"
+                  className="text-[#F3EEE8]/50 hover:text-[#B8B8A6] transition-colors duration-500"
                   aria-label={social.name}
                 >
                   <social.icon className="h-5 w-5" strokeWidth={1.25} />
@@ -99,13 +99,13 @@ export function Footer() {
 
           {/* Download Apps */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-[#B8B8A6] uppercase tracking-[0.2em]">
               Download Our Apps
             </h3>
             <div className="flex flex-col gap-4">
               <Link
                 href="#"
-                className="inline-flex items-center bg-ivory/5 hover:bg-ivory/10 transition-all duration-500 rounded px-3 py-2.5 w-fit"
+                className="inline-flex items-center bg-[#F3EEE8]/5 hover:bg-[#F3EEE8]/10 transition-all duration-500 rounded px-3 py-2.5 w-fit"
               >
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
@@ -117,7 +117,7 @@ export function Footer() {
               </Link>
               <Link
                 href="#"
-                className="inline-flex items-center bg-ivory/5 hover:bg-ivory/10 transition-all duration-500 rounded px-3 py-2.5 w-fit"
+                className="inline-flex items-center bg-[#F3EEE8]/5 hover:bg-[#F3EEE8]/10 transition-all duration-500 rounded px-3 py-2.5 w-fit"
               >
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
@@ -132,12 +132,12 @@ export function Footer() {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 md:mt-18 pt-8 border-t border-ivory/10">
+        <div className="mt-14 md:mt-18 pt-8 border-t border-[#F3EEE8]/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <Link href="/" className="font-serif text-lg tracking-[0.25em] text-gold">
+            <Link href="/" className="font-serif text-lg tracking-[0.25em] text-[#B8B8A6]">
               WHAT IF WEAR
             </Link>
-            <p className="text-center text-xs text-ivory/40 tracking-[0.1em]">
+            <p className="text-center text-xs text-[#F3EEE8]/40 tracking-[0.1em]">
               Copyright 2026 WHAT IF WEAR. All rights reserved
             </p>
           </div>

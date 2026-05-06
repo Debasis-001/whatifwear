@@ -4,45 +4,51 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Luxury Editorial Palette */
-  --background: #F5F5F2;
-  --background-dark: #0A0A0A;
-  --foreground: #1A1A1A;
-  --foreground-light: #F5F5F2;
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #1A1A1A;
-  --primary-foreground: #F5F5F2;
-  --secondary: #E8E6E3;
-  --secondary-foreground: #1A1A1A;
-  --muted: #E8E6E3;
-  --muted-foreground: #6B6B6B;
-  --accent: #C9A962;
-  --accent-foreground: #1A1A1A;
-  --gold: #C9A962;
-  --ivory: #F5F5F2;
-  --charcoal: #2A2A2A;
+  /* Premium Earthy Luxury Palette */
+  --background: #F3EEE8;           /* Warm Cream / Ivory - main website background */
+  --background-dark: #8D927B;      /* Muted Olive Green - darker sections */
+  --background-sage: #B8B8A6;      /* Light Sage Green - section backgrounds */
+  --background-beige: #D9D2C8;     /* Soft Beige - alternating panels */
+  --background-offwhite: #FAF8F5;  /* Off White - cards, elevated surfaces */
+  --foreground: #6E725F;           /* Dark Olive Text - primary text */
+  --foreground-light: #FAF8F5;     /* Off White - text on dark backgrounds */
+  --card: #FAF8F5;                 /* Off White - card backgrounds */
+  --card-foreground: #6E725F;      /* Dark Olive Text */
+  --popover: #FAF8F5;
+  --popover-foreground: #6E725F;
+  --primary: #6E725F;              /* Dark Olive Text - buttons, headings */
+  --primary-foreground: #FAF8F5;
+  --secondary: #D9D2C8;            /* Soft Beige */
+  --secondary-foreground: #6E725F;
+  --muted: #D9D2C8;                /* Soft Beige */
+  --muted-foreground: #A79F92;     /* Dusty Taupe / Greige */
+  --accent: #8D927B;               /* Muted Olive Green */
+  --accent-foreground: #FAF8F5;
+  --gold: #8D927B;                 /* Muted Olive - replaces gold for earthy feel */
+  --ivory: #F3EEE8;                /* Warm Cream */
+  --charcoal: #6E725F;             /* Dark Olive Text */
+  --taupe: #A79F92;                /* Dusty Taupe - borders, dividers */
+  --sage: #B8B8A6;                 /* Light Sage Green */
+  --olive: #8D927B;                /* Muted Olive */
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: #E0DDD8;
-  --input: #E8E6E3;
-  --ring: #C9A962;
+  --border: #D9D2C8;               /* Soft Beige borders */
+  --input: #D9D2C8;
+  --ring: #8D927B;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.5rem;
-  --sidebar: #F5F5F2;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #1A1A1A;
-  --sidebar-primary-foreground: #F5F5F2;
-  --sidebar-accent: #E8E6E3;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E0DDD8;
-  --sidebar-ring: #C9A962;
+  --sidebar: #F3EEE8;
+  --sidebar-foreground: #6E725F;
+  --sidebar-primary: #6E725F;
+  --sidebar-primary-foreground: #FAF8F5;
+  --sidebar-accent: #D9D2C8;
+  --sidebar-accent-foreground: #6E725F;
+  --sidebar-border: #D9D2C8;
+  --sidebar-ring: #8D927B;
 }
 
 .dark {
@@ -86,6 +92,9 @@
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-background-dark: var(--background-dark);
+  --color-background-sage: var(--background-sage);
+  --color-background-beige: var(--background-beige);
+  --color-background-offwhite: var(--background-offwhite);
   --color-foreground: var(--foreground);
   --color-foreground-light: var(--foreground-light);
   --color-card: var(--card);
@@ -103,6 +112,9 @@
   --color-gold: var(--gold);
   --color-ivory: var(--ivory);
   --color-charcoal: var(--charcoal);
+  --color-taupe: var(--taupe);
+  --color-sage: var(--sage);
+  --color-olive: var(--olive);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -178,8 +190,83 @@ section {
 
 /* Custom selection color */
 ::selection {
-  background-color: var(--gold);
-  color: var(--foreground);
+  background-color: var(--olive);
+  color: var(--foreground-light);
+}
+
+/* Premium Section Transitions - Smooth Earthy Blending */
+.section-cream {
+  background: linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
+}
+
+.section-beige {
+  background: linear-gradient(180deg, var(--background-beige) 0%, var(--background-beige) 100%);
+}
+
+.section-sage {
+  background: linear-gradient(180deg, var(--background-sage) 0%, var(--background-sage) 100%);
+}
+
+.section-olive {
+  background: linear-gradient(180deg, var(--background-dark) 0%, var(--background-dark) 100%);
+}
+
+/* Smooth section-to-section gradient transitions */
+.section-cream-to-beige {
+  background: linear-gradient(180deg, var(--background) 0%, var(--background-beige) 100%);
+}
+
+.section-beige-to-sage {
+  background: linear-gradient(180deg, var(--background-beige) 0%, var(--background-sage) 100%);
+}
+
+.section-sage-to-olive {
+  background: linear-gradient(180deg, var(--background-sage) 0%, var(--background-dark) 100%);
+}
+
+.section-olive-to-cream {
+  background: linear-gradient(180deg, var(--background-dark) 0%, var(--background) 100%);
+}
+
+.section-cream-to-sage {
+  background: linear-gradient(180deg, var(--background) 0%, var(--background-sage) 100%);
+}
+
+.section-sage-to-cream {
+  background: linear-gradient(180deg, var(--background-sage) 0%, var(--background) 100%);
+}
+
+.section-olive-to-sage {
+  background: linear-gradient(180deg, var(--background-dark) 0%, var(--background-sage) 100%);
+}
+
+.section-beige-to-olive {
+  background: linear-gradient(180deg, var(--background-beige) 0%, var(--background-dark) 100%);
+}
+
+/* Section blend overlays for smooth transitions */
+.section-blend-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, var(--background) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-blend-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(0deg, var(--background) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Premium glassmorphism for search modal */

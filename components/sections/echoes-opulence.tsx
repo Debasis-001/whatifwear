@@ -36,33 +36,33 @@ export function EchoesOpulence() {
   }, [])
 
   return (
-    <section className="relative bg-ivory py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-[#8D927B] via-[#B8B8A6] to-[#F3EEE8] py-24 md:py-32 lg:py-40 overflow-hidden">
       {/* Background Typography - Large luxury style behind model */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden">
         <motion.h2
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.03 }}
+          whileInView={{ opacity: 0.04 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="font-serif text-[22vw] md:text-[16vw] font-light text-charcoal leading-none tracking-[0.05em]"
+          className="font-serif text-[22vw] md:text-[16vw] font-light text-[#6E725F] leading-none tracking-[0.05em]"
         >
           ECHOES
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.03 }}
+          whileInView={{ opacity: 0.04 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.1, ease: "easeOut" }}
-          className="font-serif text-3xl md:text-5xl lg:text-6xl italic text-charcoal -mt-6 md:-mt-10"
+          className="font-serif text-3xl md:text-5xl lg:text-6xl italic text-[#6E725F] -mt-6 md:-mt-10"
         >
           of
         </motion.p>
         <motion.h2
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.03 }}
+          whileInView={{ opacity: 0.04 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-          className="font-serif text-[24vw] md:text-[18vw] font-light text-charcoal leading-none tracking-[0.05em] -mt-6 md:-mt-12"
+          className="font-serif text-[24vw] md:text-[18vw] font-light text-[#6E725F] leading-none tracking-[0.05em] -mt-6 md:-mt-12"
         >
           OPULENCE
         </motion.h2>
@@ -78,13 +78,13 @@ export function EchoesOpulence() {
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="order-2 md:order-1 text-center md:text-left"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-gold mb-4 inline-block">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#6E725F] mb-4 inline-block">
               Grandeur
             </span>
-            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-charcoal mb-6 gold-underline w-fit mx-auto md:mx-0">
+            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#6E725F] mb-6 relative w-fit mx-auto md:mx-0 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-10 after:h-px after:bg-[#8D927B]">
               Timeless Elegance
             </h3>
-            <p className="text-sm md:text-base text-charcoal/60 leading-[1.8] max-w-md mx-auto md:mx-0">
+            <p className="text-sm md:text-base text-[#6E725F]/70 leading-[1.8] max-w-md mx-auto md:mx-0">
               A celebration of bold elegance crafted for timeless souls. Made to elevate the
               ordinary persona — we understand taste by exquisite precision. From impeccable
               silhouettes to contemporary designs.
@@ -92,7 +92,7 @@ export function EchoesOpulence() {
             <div className="mt-10 md:mt-12">
               <Link
                 href="/shop"
-                className="btn-luxury inline-block border border-charcoal bg-transparent px-10 py-4 text-[10px] md:text-xs uppercase tracking-[0.25em] text-charcoal"
+                className="inline-block border border-[#6E725F] bg-transparent px-10 py-4 text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#6E725F] transition-all duration-500 hover:bg-[#6E725F] hover:text-[#F3EEE8]"
               >
                 <span>Browse Collection</span>
               </Link>
@@ -135,7 +135,7 @@ export function EchoesOpulence() {
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
                     className={`h-1 rounded-full transition-all duration-700 ease-out ${
-                      idx === currentIndex ? "bg-gold w-8" : "bg-white/50 w-1"
+                      idx === currentIndex ? "bg-[#8D927B] w-8" : "bg-[#F3EEE8]/50 w-1"
                     }`}
                     aria-label={`View outfit ${idx + 1}`}
                   />
