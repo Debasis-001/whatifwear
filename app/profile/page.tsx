@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { User, Package, Heart, Settings, LogOut, ChevronRight } from "lucide-react";
+import { User, Package, Heart, Settings, LogOut, ChevronRight, MapPin, CreditCard, Bell } from "lucide-react";
 import { ProductCard } from "@/app/components/store/ProductCard";
 import { StoreShell } from "@/app/components/store/StoreShell";
 import { useAuth } from "@/app/context/auth-context";
@@ -16,15 +16,24 @@ const orders = [
     product: "Obsidian Drift Jacket",
     status: "Delivered",
     date: "16 Apr 2026",
-    statusColor: "text-green-400",
+    statusColor: "text-emerald-400",
+    bgColor: "bg-emerald-400/10",
   },
   {
     id: "WIW-1966",
     product: "Graphite Relaxed Tee",
     status: "Shipped",
     date: "Tracking active",
-    statusColor: "text-gold",
+    statusColor: "text-[#B8B8A6]",
+    bgColor: "bg-[#B8B8A6]/10",
   },
+];
+
+const menuItems = [
+  { icon: MapPin, label: "Addresses", href: "#", description: "Manage delivery addresses" },
+  { icon: CreditCard, label: "Payment Methods", href: "#", description: "Saved cards & wallets" },
+  { icon: Bell, label: "Notifications", href: "#", description: "Email & push preferences" },
+  { icon: Settings, label: "Account Settings", href: "#settings", description: "Privacy & security" },
 ];
 
 export default function ProfilePage() {
@@ -42,8 +51,8 @@ export default function ProfilePage() {
   if (isLoading) {
     return (
       <StoreShell>
-        <div className="flex items-center justify-center py-20">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-gold border-t-transparent" />
+        <div className="flex items-center justify-center py-32">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#B8B8A6] border-t-transparent" />
         </div>
       </StoreShell>
     );
@@ -53,22 +62,23 @@ export default function ProfilePage() {
     return (
       <StoreShell>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mx-auto max-w-md py-16 text-center"
+          transition={{ duration: 0.6 }}
+          className="empty-state-premium mx-auto max-w-md py-20"
         >
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-white/5">
-            <User className="h-8 w-8 text-white/40" />
+          <div className="icon-wrapper">
+            <User className="h-8 w-8 text-[#B8B8A6]/60" strokeWidth={1.5} />
           </div>
-          <h2 className="font-serif text-2xl font-light text-white">
-            Sign in to view your profile
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-[#F3EEE8] mb-3">
+            Sign in to continue
           </h2>
-          <p className="mt-3 text-white/60">
-            Access your orders, wishlist, and account settings
+          <p className="text-[#F3EEE8]/50 text-sm mb-8 max-w-xs">
+            Access your orders, wishlist, and account settings with your personal profile.
           </p>
           <Link
             href="/login"
-            className="mt-6 inline-block rounded-lg bg-gold px-8 py-3 text-sm font-medium uppercase tracking-wider text-charcoal transition hover:bg-gold/90"
+            className="btn-premium"
           >
             Sign In
           </Link>
@@ -79,90 +89,114 @@ export default function ProfilePage() {
 
   return (
     <StoreShell>
-      <div className="space-y-6">
+      <div className="space-y-6 md:space-y-8 py-4 md:py-6">
         {/* Profile Header */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+          transition={{ duration: 0.5 }}
+          className="card-luxury-dark p-6 md:p-8"
         >
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             {user?.avatar ? (
-              <img
-                src={user.avatar}
-                alt={user.name}
-                className="h-16 w-16 rounded-full object-cover border-2 border-gold/30"
-              />
+              <div className="relative">
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  className="h-20 w-20 md:h-24 md:w-24 rounded-full object-cover border-2 border-[#B8B8A6]/30"
+                />
+                <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-[#6E725F]" />
+              </div>
             ) : (
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/20 border-2 border-gold/30">
-                <User className="h-7 w-7 text-gold" />
+              <div className="flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#B8B8A6]/20 to-[#8D927B]/10 border-2 border-[#B8B8A6]/30">
+                <User className="h-8 w-8 md:h-10 md:w-10 text-[#B8B8A6]" strokeWidth={1.5} />
               </div>
             )}
             <div>
-              <h1 className="font-serif text-xl font-medium text-white">{user?.name}</h1>
-              <p className="text-sm text-white/60">{user?.email}</p>
+              <h1 className="font-serif text-xl md:text-2xl font-medium text-[#F3EEE8]">{user?.name}</h1>
+              <p className="text-sm text-[#F3EEE8]/50 mt-1">{user?.email}</p>
+              <p className="text-xs text-[#B8B8A6] uppercase tracking-wider mt-2">Member since 2024</p>
             </div>
           </div>
         </motion.section>
 
-        {/* Quick Actions */}
+        {/* Quick Stats */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="grid grid-cols-3 gap-3"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="grid grid-cols-3 gap-3 md:gap-4"
         >
           {[
-            { icon: Package, label: "Orders", href: "#orders", count: orders.length },
-            { icon: Heart, label: "Wishlist", href: "/wishlist", count: wishlist.length },
-            { icon: Settings, label: "Settings", href: "#settings" },
-          ].map((item) => (
+            { icon: Package, label: "Orders", value: orders.length, href: "#orders" },
+            { icon: Heart, label: "Wishlist", value: wishlist.length, href: "/wishlist" },
+            { icon: Settings, label: "Settings", value: null, href: "#settings" },
+          ].map((stat, index) => (
             <Link
-              key={item.label}
-              href={item.href}
-              className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-gold/30 hover:bg-white/[0.04]"
+              key={stat.label}
+              href={stat.href}
+              className="card-luxury-dark flex flex-col items-center gap-3 p-4 md:p-6 group"
             >
               <div className="relative">
-                <item.icon className="h-5 w-5 text-white/60" strokeWidth={1.5} />
-                {item.count !== undefined && item.count > 0 && (
-                  <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-medium text-charcoal">
-                    {item.count}
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#B8B8A6]/15 to-[#8D927B]/5 group-hover:from-[#B8B8A6]/25 group-hover:to-[#8D927B]/15 transition-all duration-500">
+                  <stat.icon className="h-5 w-5 text-[#B8B8A6] group-hover:text-[#F3EEE8] transition-colors duration-500" strokeWidth={1.5} />
+                </div>
+                {stat.value !== null && stat.value > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#B8B8A6] text-[10px] font-semibold text-[#6E725F]">
+                    {stat.value}
                   </span>
                 )}
               </div>
-              <span className="text-xs text-white/80">{item.label}</span>
+              <span className="text-xs text-[#F3EEE8]/70 group-hover:text-[#F3EEE8] transition-colors duration-300">{stat.label}</span>
             </Link>
           ))}
         </motion.section>
 
-        {/* Orders */}
+        {/* Recent Orders */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           id="orders"
-          className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+          className="card-luxury-dark p-5 md:p-6"
         >
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-serif text-lg font-medium text-white">Recent Orders</h2>
-            <Link href="#" className="text-xs text-gold hover:underline">View All</Link>
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <h2 className="font-serif text-lg md:text-xl font-medium text-[#F3EEE8]">Recent Orders</h2>
+              <p className="text-xs text-[#F3EEE8]/40 mt-1">Track your purchases</p>
+            </div>
+            <Link href="#" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300 uppercase tracking-wider">
+              View All
+            </Link>
           </div>
           <div className="space-y-3">
-            {orders.map((order) => (
-              <div
+            {orders.map((order, index) => (
+              <motion.div
                 key={order.id}
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-gold/20"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="flex items-center justify-between rounded-xl border border-[#F3EEE8]/8 bg-[#F3EEE8]/[0.02] p-4 transition-all duration-300 hover:border-[#B8B8A6]/20 hover:bg-[#F3EEE8]/[0.04] group cursor-pointer"
               >
-                <div>
-                  <p className="text-sm font-medium text-white">#{order.id}</p>
-                  <p className="text-xs text-white/50">{order.product}</p>
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-[#B8B8A6]/10 to-[#8D927B]/5 flex items-center justify-center">
+                    <Package className="h-5 w-5 text-[#B8B8A6]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#F3EEE8]">#{order.id}</p>
+                    <p className="text-xs text-[#F3EEE8]/50 mt-0.5">{order.product}</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className={`text-xs font-medium ${order.statusColor}`}>{order.status}</p>
-                  <p className="text-xs text-white/40">{order.date}</p>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <p className={`text-xs font-medium ${order.statusColor} ${order.bgColor} px-2.5 py-1 rounded-full`}>
+                      {order.status}
+                    </p>
+                    <p className="text-[10px] text-[#F3EEE8]/40 mt-1.5">{order.date}</p>
+                  </div>
+                  <ChevronRight className="h-4 w-4 text-[#F3EEE8]/30 group-hover:text-[#B8B8A6] group-hover:translate-x-1 transition-all duration-300" />
                 </div>
-                <ChevronRight className="h-4 w-4 text-white/30" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.section>
@@ -172,38 +206,79 @@ export default function ProfilePage() {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-serif text-lg font-medium text-white">Saved Items</h2>
-              <Link href="/wishlist" className="text-xs text-gold hover:underline">View All</Link>
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <h2 className="font-serif text-lg md:text-xl font-medium text-[#F3EEE8]">Saved Items</h2>
+                <p className="text-xs text-[#F3EEE8]/40 mt-1">Your wishlist favorites</p>
+              </div>
+              <Link href="/wishlist" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300 uppercase tracking-wider">
+                View All
+              </Link>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {savedProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+              {savedProducts.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.05 }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
               ))}
             </div>
           </motion.section>
         )}
 
-        {/* Account Actions */}
+        {/* Account Menu */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           id="settings"
           className="space-y-2"
+        >
+          <h2 className="font-serif text-lg font-medium text-[#F3EEE8] mb-4">Account</h2>
+          {menuItems.map((item, index) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="flex items-center justify-between rounded-xl border border-[#F3EEE8]/8 bg-[#F3EEE8]/[0.02] p-4 transition-all duration-300 hover:border-[#B8B8A6]/20 hover:bg-[#F3EEE8]/[0.04] group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#B8B8A6]/10 to-[#8D927B]/5 group-hover:from-[#B8B8A6]/20 group-hover:to-[#8D927B]/10 transition-all duration-500">
+                  <item.icon className="h-4 w-4 text-[#B8B8A6]" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-[#F3EEE8] group-hover:text-[#B8B8A6] transition-colors duration-300">{item.label}</p>
+                  <p className="text-xs text-[#F3EEE8]/40">{item.description}</p>
+                </div>
+              </div>
+              <ChevronRight className="h-4 w-4 text-[#F3EEE8]/30 group-hover:text-[#B8B8A6] group-hover:translate-x-1 transition-all duration-300" />
+            </Link>
+          ))}
+        </motion.section>
+
+        {/* Sign Out */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           <button
             type="button"
             onClick={handleLogout}
-            className="w-full flex items-center justify-between rounded-xl border border-red-400/30 bg-red-500/5 px-5 py-4 text-sm text-red-400 transition hover:bg-red-500/10"
+            className="w-full flex items-center justify-between rounded-xl border border-red-400/20 bg-red-500/5 px-5 py-4 text-sm text-red-400 transition-all duration-300 hover:bg-red-500/10 hover:border-red-400/30 group"
           >
-            <span className="flex items-center gap-3">
-              <LogOut className="h-4 w-4" />
-              Sign Out
+            <span className="flex items-center gap-4">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10 group-hover:bg-red-500/15 transition-colors duration-300">
+                <LogOut className="h-4 w-4" strokeWidth={1.5} />
+              </div>
+              <span>Sign Out</span>
             </span>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-4 w-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
           </button>
         </motion.section>
       </div>

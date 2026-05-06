@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { products } from "@/app/lib/products";
 import { useStore } from "@/app/context/store-context";
 import { CartIcon, HeartIcon, ProfileIcon, SearchIcon } from "@/app/components/store/icons";
 import { SearchModal } from "@/components/search/search-modal";
+import { Home, ShoppingBag, Heart, User } from "lucide-react";
 
 type StoreShellProps = {
   children: React.ReactNode;
@@ -25,64 +27,87 @@ function CartPanel() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#6E725F]/55 backdrop-blur-[2px]"
+            className="fixed inset-0 z-40 bg-[#6E725F]/60 backdrop-blur-sm"
           />
           <motion.aside
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ ease: "easeOut", duration: 0.35 }}
-            className="fixed right-0 top-0 z-50 h-full w-full max-w-md border-l border-[#F3EEE8]/10 bg-[#6E725F] p-5"
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed right-0 top-0 z-50 h-full w-full max-w-md premium-depth-dark border-l border-[#F3EEE8]/10"
           >
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-semibold text-[#F3EEE8]">Your Bag</h3>
-              <button type="button" onClick={closeCart} className="text-[#F3EEE8]/70 hover:text-[#F3EEE8]">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-[#F3EEE8]/10">
+              <h3 className="font-serif text-xl font-light tracking-wide text-[#F3EEE8]">Your Bag</h3>
+              <button 
+                type="button" 
+                onClick={closeCart} 
+                className="text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300 text-sm tracking-wider uppercase"
+              >
                 Close
               </button>
             </div>
-            <div className="mt-5 h-[calc(100%-162px)] overflow-y-auto pr-1">
+            
+            {/* Cart Items */}
+            <div className="h-[calc(100%-180px)] overflow-y-auto p-5">
               {cart.length === 0 ? (
-                <div className="mt-20 rounded-2xl border border-[#F3EEE8]/10 bg-[#F3EEE8]/[0.02] p-6 text-center">
-                  <p className="text-[#F3EEE8]/80">Your bag is empty</p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="empty-state-premium mt-16"
+                >
+                  <div className="icon-wrapper">
+                    <ShoppingBag className="h-8 w-8 text-[#B8B8A6]/60" strokeWidth={1.5} />
+                  </div>
+                  <p className="text-[#F3EEE8]/80 font-serif text-lg mb-2">Your bag is empty</p>
+                  <p className="text-[#F3EEE8]/50 text-sm mb-6">Discover our curated collection</p>
                   <Link
                     href="/shop"
                     onClick={closeCart}
-                    className="mt-4 inline-block rounded-full border border-[#B8B8A6]/50 px-4 py-2 text-sm text-[#B8B8A6] hover:bg-[#B8B8A6]/10"
+                    className="btn-premium-outline text-xs"
                   >
                     Explore Collection
                   </Link>
-                </div>
+                </motion.div>
               ) : (
-                <div className="space-y-3">
-                  {cart.map((item) => {
+                <div className="space-y-4">
+                  {cart.map((item, index) => {
                     const product = products.find((p) => p.id === item.id);
                     if (!product) return null;
                     return (
-                      <div key={item.id} className="rounded-2xl border border-[#F3EEE8]/10 bg-[#F3EEE8]/[0.02] p-3">
-                        <div className="flex gap-3">
-                          <img
-                            src={product.images[0]}
-                            alt={product.name}
-                            className="h-20 w-16 rounded-lg object-cover"
-                          />
+                      <motion.div 
+                        key={item.id} 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="card-luxury-dark p-4"
+                      >
+                        <div className="flex gap-4">
+                          <div className="relative h-24 w-20 rounded-lg overflow-hidden flex-shrink-0">
+                            <img
+                              src={product.images[0]}
+                              alt={product.name}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-[#F3EEE8]">{product.name}</p>
-                            <p className="text-sm text-[#F3EEE8]/70">
+                            <p className="truncate text-sm font-medium text-[#F3EEE8] mb-1">{product.name}</p>
+                            <p className="text-sm text-[#B8B8A6] font-medium">
                               {"\u20B9"}{product.price.toLocaleString("en-IN")}
                             </p>
-                            <div className="mt-2 flex items-center gap-2">
+                            <div className="mt-3 flex items-center gap-3">
                               <button
                                 type="button"
                                 onClick={() => updateQty(item.id, item.quantity - 1)}
-                                className="h-7 w-7 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80"
+                                className="h-8 w-8 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80 hover:border-[#B8B8A6]/50 hover:text-[#B8B8A6] transition-all duration-300 flex items-center justify-center text-sm"
                               >
                                 -
                               </button>
-                              <span className="text-sm text-[#F3EEE8]">{item.quantity}</span>
+                              <span className="text-sm text-[#F3EEE8] w-6 text-center font-medium">{item.quantity}</span>
                               <button
                                 type="button"
                                 onClick={() => updateQty(item.id, item.quantity + 1)}
-                                className="h-7 w-7 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80"
+                                className="h-8 w-8 rounded-full border border-[#F3EEE8]/20 text-[#F3EEE8]/80 hover:border-[#B8B8A6]/50 hover:text-[#B8B8A6] transition-all duration-300 flex items-center justify-center text-sm"
                               >
                                 +
                               </button>
@@ -92,24 +117,26 @@ function CartPanel() {
                         <button
                           type="button"
                           onClick={() => removeFromCart(item.id)}
-                          className="mt-3 text-xs text-red-400 hover:text-red-300"
+                          className="mt-3 text-xs text-red-400/80 hover:text-red-400 transition-colors duration-300"
                         >
                           Remove
                         </button>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
               )}
             </div>
-            <div className="absolute bottom-5 left-5 right-5 border-t border-[#F3EEE8]/10 pt-4">
-              <div className="mb-3 flex items-center justify-between text-[#F3EEE8]/80">
-                <span>Total</span>
-                <span className="font-semibold text-[#F3EEE8]">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
+            
+            {/* Footer */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#F3EEE8]/10 bg-gradient-to-t from-[#6E725F] to-transparent pt-8">
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-[#F3EEE8]/70 text-sm">Subtotal</span>
+                <span className="font-serif text-xl text-[#F3EEE8]">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
               </div>
               <button
                 type="button"
-                className="w-full rounded-full bg-[#B8B8A6] px-4 py-3 text-sm font-semibold text-[#6E725F] transition active:scale-[0.99] hover:bg-[#D9D2C8]"
+                className="btn-premium w-full"
               >
                 Checkout
               </button>
@@ -123,99 +150,189 @@ function CartPanel() {
 
 export function StoreShell({ children, showArchiveLabel = false }: StoreShellProps) {
   const { cartCount, openCart, wishlistCount, openSearch } = useStore();
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/", label: "Home", icon: Home },
+    { href: "/shop", label: "Shop", icon: ShoppingBag },
+    { href: "/wishlist", label: "Wishlist", icon: Heart, count: wishlistCount },
+    { href: "/profile", label: "Profile", icon: User },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#8D927B] text-[#FAF8F5] overflow-x-hidden">
-      <header className="sticky top-0 z-30 border-b border-[#F3EEE8]/10 bg-[#8D927B]/90 backdrop-blur-lg">
-        <div className="mx-auto flex h-16 md:h-18 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="font-serif text-sm md:text-base font-medium tracking-[0.25em] text-[#F3EEE8] hover:text-[#B8B8A6] transition-colors duration-500">
+    <div className="min-h-screen premium-depth-dark text-[#FAF8F5] overflow-x-hidden">
+      {/* Premium Header */}
+      <header className="sticky top-0 z-30 nav-floating">
+        <div className="mx-auto flex h-16 md:h-18 max-w-7xl items-center justify-between px-5 sm:px-6">
+          <Link 
+            href="/" 
+            className="font-serif text-sm md:text-base font-medium tracking-[0.25em] text-[#F3EEE8] hover:text-[#B8B8A6] transition-colors duration-500"
+          >
             WHAT IF WEAR
           </Link>
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               type="button"
               onClick={openSearch}
-              className="rounded-full p-2 text-[#F3EEE8]/70 transition hover:text-[#B8B8A6]"
+              className="rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              aria-label="Search"
             >
-              <SearchIcon className="h-4 w-4" />
+              <SearchIcon className="h-[18px] w-[18px]" />
             </button>
             <Link
               href="/wishlist"
-              className="relative rounded-full p-2 text-[#F3EEE8]/70 transition hover:text-[#B8B8A6]"
+              className="relative rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              aria-label="Wishlist"
             >
-              <HeartIcon className="h-4 w-4" />
+              <HeartIcon className="h-[18px] w-[18px]" />
               {wishlistCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#6E725F] text-[10px] font-semibold text-[#F3EEE8]">
+                <motion.span 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                >
                   {wishlistCount}
-                </span>
+                </motion.span>
               )}
             </Link>
             <button
               type="button"
               onClick={openCart}
-              className="relative rounded-full p-2 text-[#F3EEE8]/80 transition hover:text-[#B8B8A6]"
+              className="relative rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              aria-label="Cart"
             >
-              <CartIcon className="h-4 w-4" />
-              {cartCount > 0 ? (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#6E725F] text-[10px] font-semibold text-[#F3EEE8]">
+              <CartIcon className="h-[18px] w-[18px]" />
+              {cartCount > 0 && (
+                <motion.span 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                >
                   {cartCount}
-                </span>
-              ) : null}
+                </motion.span>
+              )}
             </button>
-            <Link href="/profile" className="rounded-full p-2 text-[#F3EEE8]/70 transition hover:text-[#B8B8A6]">
-              <ProfileIcon className="h-4 w-4" />
+            <Link 
+              href="/profile" 
+              className="rounded-full p-2.5 text-[#F3EEE8]/70 transition-all duration-300 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5"
+              aria-label="Profile"
+            >
+              <ProfileIcon className="h-[18px] w-[18px]" />
             </Link>
           </div>
         </div>
-        {showArchiveLabel ? (
-          <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
+        {showArchiveLabel && (
+          <div className="mx-auto max-w-7xl px-5 pb-4 sm:px-6">
             <h1 className="font-serif text-2xl md:text-3xl font-light tracking-[0.3em] text-[#F3EEE8]">
-              <span className="text-[#D9D2C8]">THE</span> ARCHIVE
+              <span className="text-[#B8B8A6]">THE</span> ARCHIVE
             </h1>
           </div>
-        ) : null}
+        )}
       </header>
+      
       <motion.main
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mx-auto max-w-7xl px-4 pb-24 pt-6 sm:px-6"
+        className="mx-auto max-w-7xl px-5 pb-28 pt-6 sm:px-6"
       >
         {children}
       </motion.main>
 
-      <button
+      {/* Floating Cart Button (Desktop) */}
+      <motion.button
         type="button"
         onClick={openCart}
-        className="fixed bottom-20 right-4 z-20 rounded-full border border-[#F3EEE8]/50 bg-[#6E725F] p-3 text-[#F3EEE8] shadow-[0_0_16px_rgba(141,146,123,0.35)] transition hover:scale-105 md:bottom-6"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+        className="hidden md:flex fixed bottom-8 right-8 z-20 items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-[#8D927B] to-[#6E725F] text-[#F3EEE8] shadow-[0_8px_32px_rgba(110,114,95,0.4)] transition-all duration-500 hover:scale-105 hover:shadow-[0_12px_40px_rgba(141,146,123,0.5)]"
+        aria-label="Open cart"
       >
         <CartIcon className="h-5 w-5" />
-      </button>
+        {cartCount > 0 && (
+          <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#F3EEE8] text-[10px] font-semibold text-[#6E725F]">
+            {cartCount}
+          </span>
+        )}
+      </motion.button>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-[#F3EEE8]/10 bg-[#8D927B]/95 px-4 py-2 backdrop-blur md:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-between text-xs text-[#F3EEE8]/70">
-          <Link href="/" className="rounded-full px-3 py-2 hover:text-[#B8B8A6]">
-            Home
-          </Link>
-          <Link href="/shop" className="rounded-full px-3 py-2 hover:text-[#B8B8A6]">
-            Shop
-          </Link>
-          <Link href="/wishlist" className="relative rounded-full px-3 py-2 hover:text-[#B8B8A6]">
-            Wishlist
-            {wishlistCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#6E725F] text-[10px] font-semibold text-[#F3EEE8]">
-                {wishlistCount}
-              </span>
+      {/* Premium Mobile Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 z-30 md:hidden mobile-nav-premium safe-area-bottom">
+        <div className="mx-auto flex max-w-md items-center justify-around">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`mobile-nav-item relative ${isActive ? 'active' : ''}`}
+              >
+                <motion.div
+                  animate={isActive ? { y: -2, scale: 1.1 } : { y: 0, scale: 1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="nav-icon"
+                >
+                  <Icon 
+                    className={`h-5 w-5 transition-all duration-300 ${
+                      isActive ? 'drop-shadow-[0_0_8px_rgba(184,184,166,0.6)]' : ''
+                    }`} 
+                    strokeWidth={isActive ? 2 : 1.5} 
+                  />
+                </motion.div>
+                <span className={`text-[10px] tracking-wider transition-all duration-300 ${
+                  isActive ? 'font-medium' : 'font-normal'
+                }`}>
+                  {item.label}
+                </span>
+                {item.count && item.count > 0 && (
+                  <motion.span 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+                  >
+                    {item.count}
+                  </motion.span>
+                )}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#B8B8A6]"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
+          
+          {/* Cart Button in Mobile Nav */}
+          <button
+            type="button"
+            onClick={openCart}
+            className="mobile-nav-item relative"
+          >
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+              className="nav-icon"
+            >
+              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+            </motion.div>
+            <span className="text-[10px] tracking-wider">Cart</span>
+            {cartCount > 0 && (
+              <motion.span 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#B8B8A6] text-[9px] font-semibold text-[#6E725F]"
+              >
+                {cartCount}
+              </motion.span>
             )}
-          </Link>
-          <button type="button" onClick={openCart} className="rounded-full px-3 py-2 hover:text-[#B8B8A6]">
-            Cart
           </button>
-          <Link href="/profile" className="rounded-full px-3 py-2 hover:text-[#B8B8A6]">
-            Profile
-          </Link>
         </div>
       </nav>
+      
       <CartPanel />
       <SearchModal />
     </div>
