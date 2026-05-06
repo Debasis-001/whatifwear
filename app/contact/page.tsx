@@ -100,7 +100,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-ivory/95 backdrop-blur-md border-b border-charcoal/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 nav-floating">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="flex h-16 md:h-20 items-center justify-between">
             {/* Left - Nav Links (Desktop) */}
@@ -110,7 +110,7 @@ export default function ContactPage() {
                   key={link.name}
                   href={link.href}
                   className={`text-[11px] font-medium transition-colors duration-500 tracking-[0.15em] uppercase ${
-                    link.href === "/contact" ? "text-gold" : "text-charcoal/70 hover:text-gold"
+                    link.href === "/contact" ? "text-[#B8B8A6]" : "text-[#F3EEE8]/60 hover:text-[#B8B8A6]"
                   }`}
                 >
                   {link.name}
@@ -120,7 +120,7 @@ export default function ContactPage() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-charcoal z-50"
+              className="md:hidden text-[#F3EEE8] z-50"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -128,44 +128,48 @@ export default function ContactPage() {
             </button>
 
             {/* Center - Logo */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 font-serif text-lg md:text-xl tracking-[0.25em] text-charcoal">
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 font-serif text-lg md:text-xl tracking-[0.25em] text-[#F3EEE8] hover:text-[#B8B8A6] transition-colors duration-500">
               WHAT IF WEAR
             </Link>
 
             {/* Right - Icons */}
-            <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
+            <div className="hidden md:flex items-center gap-5 flex-1 justify-end">
               <button 
                 onClick={openSearch}
-                className="text-charcoal/70 hover:text-gold transition-colors duration-500" 
+                className="p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300" 
                 aria-label="Search"
               >
-                <Search className="h-5 w-5" strokeWidth={1.5} />
+                <Search className="h-[18px] w-[18px]" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative text-charcoal/70 hover:text-gold transition-colors duration-500" 
+                className="relative p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300" 
                 aria-label="Wishlist"
               >
-                <HeartIcon className="h-5 w-5" strokeWidth={1.5} />
+                <HeartIcon className="h-[18px] w-[18px]" strokeWidth={1.5} />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                  <motion.span 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute top-0 right-0 bg-[#B8B8A6] text-[#6E725F] text-[9px] font-semibold w-4 h-4 rounded-full flex items-center justify-center"
+                  >
                     {wishlistCount}
-                  </span>
+                  </motion.span>
                 )}
               </Link>
               <Link 
                 href="/profile" 
-                className="relative text-charcoal/70 hover:text-gold transition-all duration-500 group"
+                className="relative p-2.5 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:bg-[#F3EEE8]/5 transition-all duration-300 group"
                 aria-label="Profile"
               >
                 {isAuthenticated && user?.avatar ? (
                   <img 
                     src={user.avatar} 
                     alt={user.name}
-                    className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-gold transition-all duration-500"
+                    className="h-7 w-7 rounded-full object-cover border-2 border-transparent group-hover:border-[#B8B8A6] transition-all duration-500"
                   />
                 ) : (
-                  <div className="p-1 rounded-full border border-charcoal/20 group-hover:border-gold/60 transition-all duration-500">
+                  <div className="p-0.5 rounded-full border border-[#F3EEE8]/20 group-hover:border-[#B8B8A6]/60 transition-all duration-500">
                     <User className="h-4 w-4" strokeWidth={1.5} />
                   </div>
                 )}
@@ -173,17 +177,17 @@ export default function ContactPage() {
             </div>
 
             {/* Mobile Icons */}
-            <div className="flex md:hidden items-center gap-4">
+            <div className="flex md:hidden items-center gap-3">
               <button 
                 onClick={openSearch}
-                className="text-charcoal/70 hover:text-gold transition-colors duration-500" 
+                className="p-2 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300" 
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
               <Link 
                 href="/wishlist" 
-                className="relative text-charcoal/70 hover:text-gold transition-colors duration-500" 
+                className="relative p-2 rounded-full text-[#F3EEE8]/60 hover:text-[#B8B8A6] transition-colors duration-300" 
                 aria-label="Wishlist"
               >
                 <HeartIcon className="h-5 w-5" strokeWidth={1.5} />
@@ -198,16 +202,16 @@ export default function ContactPage() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:hidden bg-ivory/98 backdrop-blur-md border-t border-charcoal/10"
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="md:hidden bg-gradient-to-b from-[#6E725F]/98 to-[#8D927B]/98 backdrop-blur-xl border-t border-[#F3EEE8]/10"
           >
-            <div className="px-6 py-6 space-y-1">
+            <div className="px-6 py-8 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`block py-3 transition-colors duration-500 text-sm tracking-[0.12em] uppercase ${
-                    link.href === "/contact" ? "text-gold" : "text-charcoal/70 hover:text-gold"
+                  className={`block py-3 transition-colors duration-300 text-sm tracking-[0.15em] uppercase ${
+                    link.href === "/contact" ? "text-[#B8B8A6]" : "text-[#F3EEE8]/60 hover:text-[#B8B8A6]"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -228,14 +232,14 @@ export default function ContactPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6E725F]/60 via-[#6E725F]/30 to-[#8D927B]/80" />
         
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center pt-20">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold mb-6"
+            className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-[#B8B8A6] mb-6"
           >
             Get In Touch
           </motion.span>
@@ -243,7 +247,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-white leading-[1.1]"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-[#F3EEE8] leading-[1.1]"
           >
             Contact Us
           </motion.h1>
@@ -251,7 +255,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="mt-4 md:mt-6 max-w-md text-sm md:text-base text-white/70"
+            className="mt-4 md:mt-6 max-w-md text-sm md:text-base text-[#F3EEE8]/70"
           >
             We&apos;d love to hear from you. Let&apos;s start a conversation.
           </motion.p>
@@ -259,7 +263,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="bg-ivory py-16 md:py-24">
+      <section className="premium-depth-light py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {contactInfo.map((info, index) => (
@@ -269,16 +273,16 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 md:p-8 rounded-xl border border-charcoal/10 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group"
+                className="card-luxury p-6 md:p-8"
               >
-                <div className="mb-4 inline-flex p-3 rounded-full border border-gold/30 bg-gold/5 group-hover:bg-gold/10 transition-colors duration-500">
-                  <info.icon className="h-5 w-5 text-gold" strokeWidth={1.5} />
+                <div className="mb-4 inline-flex p-3 rounded-full border border-[#8D927B]/25 bg-[#8D927B]/5 group-hover:bg-[#8D927B]/15 transition-colors duration-500">
+                  <info.icon className="h-5 w-5 text-[#8D927B]" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-charcoal mb-2">
+                <h3 className="font-serif text-lg font-medium text-[#6E725F] mb-2">
                   {info.title}
                 </h3>
-                <p className="text-sm font-medium text-charcoal/80">{info.details}</p>
-                <p className="text-xs text-charcoal/50 mt-1">{info.subtext}</p>
+                <p className="text-sm font-medium text-[#6E725F]/80">{info.details}</p>
+                <p className="text-xs text-[#A79F92] mt-1">{info.subtext}</p>
               </motion.div>
             ))}
           </div>
@@ -286,7 +290,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form & Map Section */}
-      <section className="bg-background-dark py-20 md:py-28">
+      <section className="premium-depth-dark py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
@@ -296,15 +300,15 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">Send A Message</span>
-              <h2 className="mt-4 font-serif text-2xl md:text-3xl lg:text-4xl font-light text-foreground-light mb-8">
+              <span className="text-xs uppercase tracking-[0.3em] text-[#B8B8A6]">Send A Message</span>
+              <h2 className="mt-4 font-serif text-2xl md:text-3xl lg:text-4xl font-light text-[#F3EEE8] mb-8">
                 We&apos;re Here To Help
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="name" className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                    <label htmlFor="name" className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">
                       Your Name
                     </label>
                     <input
@@ -313,12 +317,12 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="w-full px-4 py-3.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-all duration-500"
+                      className="input-luxury"
                       placeholder="John Doe"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                    <label htmlFor="email" className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">
                       Email Address
                     </label>
                     <input
@@ -327,14 +331,14 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      className="w-full px-4 py-3.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-all duration-500"
+                      className="input-luxury"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                  <label htmlFor="subject" className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">
                     Subject
                   </label>
                   <input
@@ -343,13 +347,13 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     required
-                    className="w-full px-4 py-3.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-all duration-500"
+                    className="input-luxury"
                     placeholder="How can we help?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                  <label htmlFor="message" className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">
                     Message
                   </label>
                   <textarea
@@ -358,7 +362,7 @@ export default function ContactPage() {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     rows={5}
-                    className="w-full px-4 py-3.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-all duration-500 resize-none"
+                    className="input-luxury resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -366,13 +370,13 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={formStatus === "loading"}
-                  className="w-full sm:w-auto px-10 py-4 bg-gold text-charcoal rounded-lg text-xs uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-gold/90 hover:shadow-[0_0_30px_rgba(201,169,98,0.3)] disabled:opacity-50 flex items-center justify-center gap-3"
+                  className="btn-premium w-full sm:w-auto flex items-center justify-center gap-3"
                 >
                   {formStatus === "loading" ? (
-                    <>
-                      <span className="h-4 w-4 border-2 border-charcoal/30 border-t-charcoal rounded-full animate-spin" />
+                    <span className="flex items-center gap-3">
+                      <span className="h-4 w-4 border-2 border-[#6E725F]/30 border-t-[#6E725F] rounded-full animate-spin" />
                       Sending...
-                    </>
+                    </span>
                   ) : formStatus === "success" ? (
                     "Message Sent!"
                   ) : (
@@ -387,7 +391,7 @@ export default function ContactPage() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-sm text-gold"
+                    className="text-sm text-[#B8B8A6]"
                   >
                     Thank you! We&apos;ll get back to you within 24 hours.
                   </motion.p>
@@ -422,11 +426,11 @@ export default function ContactPage() {
               </div>
 
               {/* Social Links */}
-              <div className="bg-white/5 rounded-xl p-6 md:p-8 border border-white/10">
-                <h3 className="font-serif text-lg font-medium text-foreground-light mb-4">
+              <div className="card-luxury-dark p-6 md:p-8">
+                <h3 className="font-serif text-lg font-medium text-[#F3EEE8] mb-4">
                   Follow Us
                 </h3>
-                <p className="text-sm text-white/60 mb-6">
+                <p className="text-sm text-[#F3EEE8]/60 mb-6">
                   Stay connected for exclusive updates, behind-the-scenes content, and style inspiration.
                 </p>
                 <div className="flex gap-4">
@@ -434,7 +438,7 @@ export default function ContactPage() {
                     <Link
                       key={social.name}
                       href={social.href}
-                      className="p-3 bg-white/5 rounded-full border border-white/15 text-white/60 hover:text-gold hover:border-gold/50 hover:bg-gold/10 transition-all duration-500"
+                      className="p-3 bg-[#F3EEE8]/5 rounded-full border border-[#F3EEE8]/15 text-[#F3EEE8]/60 hover:text-[#B8B8A6] hover:border-[#B8B8A6]/40 hover:bg-[#B8B8A6]/10 transition-all duration-500"
                       aria-label={social.name}
                     >
                       <social.icon className="h-5 w-5" strokeWidth={1.5} />

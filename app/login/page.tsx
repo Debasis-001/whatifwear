@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "@/app/context/auth-context";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,23 +32,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background-dark">
+    <div className="min-h-screen bg-gradient-to-br from-[#8D927B] via-[#6E725F] to-[#8D927B]">
       {/* Back to Home */}
-      <nav className="absolute top-0 left-0 right-0 z-50 px-8 py-6">
+      <nav className="absolute top-0 left-0 right-0 z-50 px-6 md:px-10 py-6">
         <Link 
           href="/" 
-          className="text-sm font-medium tracking-[0.25em] text-white hover:text-gold transition-colors"
+          className="inline-flex items-center gap-3 text-sm font-medium tracking-[0.2em] text-[#F3EEE8]/70 hover:text-[#F3EEE8] transition-colors duration-300"
         >
-          WHAT IF WEAR
+          <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
+          <span className="font-serif tracking-[0.25em]">WHAT IF WEAR</span>
         </Link>
       </nav>
 
       <div className="flex min-h-screen">
         {/* Left - Editorial Image */}
         <motion.div 
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="hidden lg:block lg:w-1/2 relative overflow-hidden"
         >
           <img
@@ -54,51 +57,82 @@ export default function LoginPage() {
             alt="Lifestyle fashion"
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60" />
+          {/* Premium gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#6E725F]/40 via-[#6E725F]/20 to-[#6E725F]/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#6E725F]/80 via-transparent to-[#6E725F]/30" />
           
           {/* Overlay Content */}
-          <div className="absolute bottom-16 left-16 right-16 z-10">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Welcome Back</span>
-            <h2 className="mt-4 font-serif text-4xl xl:text-5xl font-light text-white leading-tight">
-              Continue Your
-              <br />
-              Style Journey
-            </h2>
-            <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
-              Sign in to access your wishlist, track orders, and unlock exclusive member benefits.
-            </p>
+          <div className="absolute bottom-16 left-12 right-12 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <span className="text-[10px] uppercase tracking-[0.4em] text-[#B8B8A6]">Welcome Back</span>
+              <h2 className="mt-5 font-serif text-4xl xl:text-5xl font-light text-[#F3EEE8] leading-[1.15]">
+                Continue Your
+                <br />
+                <span className="italic">Style Journey</span>
+              </h2>
+              <p className="mt-5 text-sm text-[#F3EEE8]/60 max-w-sm leading-[1.8]">
+                Sign in to access your wishlist, track orders, and unlock exclusive member benefits.
+              </p>
+            </motion.div>
           </div>
         </motion.div>
 
         {/* Right - Form */}
         <motion.div 
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 flex items-center justify-center px-8 py-16 lg:px-16"
+          className="flex-1 flex items-center justify-center px-6 py-20 lg:px-16"
         >
           <div className="w-full max-w-md">
+            {/* Header */}
             <div className="text-center lg:text-left">
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">{mode === "login" ? "Welcome Back" : "Join Us"}</span>
-              <h1 className="mt-4 font-serif text-3xl md:text-4xl font-light text-white">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-[10px] uppercase tracking-[0.4em] text-[#B8B8A6]"
+              >
+                {mode === "login" ? "Welcome Back" : "Join Us"}
+              </motion.span>
+              <motion.h1 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-4 font-serif text-3xl md:text-4xl font-light text-[#F3EEE8]"
+              >
                 {mode === "login" ? "Sign In" : "Create Account"}
-              </h1>
-              <p className="mt-3 text-sm text-white/50">
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-3 text-sm text-[#F3EEE8]/50 leading-relaxed"
+              >
                 {mode === "login" 
                   ? "Enter your details to continue shopping." 
                   : "Create an account to start your luxury journey."}
-              </p>
+              </motion.p>
             </div>
 
             {/* Mode Toggle */}
-            <div className="mt-8 flex rounded-lg border border-white/10 p-1">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="mt-10 flex rounded-xl border border-[#F3EEE8]/10 p-1.5 bg-[#F3EEE8]/[0.02]"
+            >
               <button
                 type="button"
                 onClick={() => setMode("login")}
-                className={`flex-1 rounded-md py-2.5 text-xs uppercase tracking-wider transition-all ${
+                className={`flex-1 rounded-lg py-3 text-xs uppercase tracking-[0.2em] transition-all duration-500 ${
                   mode === "login" 
-                    ? "bg-gold text-charcoal font-medium" 
-                    : "text-white/60 hover:text-white"
+                    ? "bg-[#B8B8A6] text-[#6E725F] font-medium shadow-lg" 
+                    : "text-[#F3EEE8]/50 hover:text-[#F3EEE8]"
                 }`}
               >
                 Sign In
@@ -106,23 +140,28 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setMode("signup")}
-                className={`flex-1 rounded-md py-2.5 text-xs uppercase tracking-wider transition-all ${
+                className={`flex-1 rounded-lg py-3 text-xs uppercase tracking-[0.2em] transition-all duration-500 ${
                   mode === "signup" 
-                    ? "bg-gold text-charcoal font-medium" 
-                    : "text-white/60 hover:text-white"
+                    ? "bg-[#B8B8A6] text-[#6E725F] font-medium shadow-lg" 
+                    : "text-[#F3EEE8]/50 hover:text-[#F3EEE8]"
                 }`}
               >
                 Sign Up
               </button>
-            </div>
+            </motion.div>
 
             {/* Social Login */}
-            <div className="mt-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="mt-8"
+            >
               <button
                 type="button"
                 onClick={handleGoogleLogin}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 rounded-lg border border-white/15 bg-white/5 px-4 py-3.5 text-sm text-white hover:border-gold/40 hover:bg-white/10 transition-all disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-3 rounded-xl border border-[#F3EEE8]/12 bg-[#F3EEE8]/[0.03] px-5 py-4 text-sm text-[#F3EEE8] hover:border-[#B8B8A6]/40 hover:bg-[#F3EEE8]/[0.06] transition-all duration-500 disabled:opacity-50"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24">
                   <path
@@ -144,57 +183,83 @@ export default function LoginPage() {
                 </svg>
                 Continue with Google
               </button>
-            </div>
+            </motion.div>
 
-            <div className="relative my-8">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="relative my-8"
+            >
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/10"></div>
+                <div className="w-full border-t border-[#F3EEE8]/10"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background-dark px-4 text-white/40 tracking-wider">or continue with email</span>
+                <span className="bg-gradient-to-r from-[#8D927B] via-[#6E725F] to-[#8D927B] px-5 text-[#F3EEE8]/40 tracking-[0.2em]">
+                  or continue with email
+                </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Email Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <motion.form 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              onSubmit={handleSubmit} 
+              className="space-y-5"
+            >
               {mode === "signup" && (
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/40 mb-2">Full Name</label>
+                  <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Full Name</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-gold/50 transition-all"
+                    className="input-luxury"
                   />
                 </div>
               )}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/40 mb-2">Email Address</label>
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Email Address</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-gold/50 transition-all"
+                  className="input-luxury"
                 />
               </div>
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/40 mb-2">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  required
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-gold/50 transition-all"
-                />
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#F3EEE8]/50 mb-2.5">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    required
+                    className="input-luxury pr-12"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#F3EEE8]/40 hover:text-[#F3EEE8]/70 transition-colors duration-300"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" strokeWidth={1.5} />
+                    ) : (
+                      <Eye className="h-4 w-4" strokeWidth={1.5} />
+                    )}
+                  </button>
+                </div>
               </div>
 
               {mode === "login" && (
                 <div className="flex justify-end">
-                  <button type="button" className="text-xs text-gold hover:underline">
+                  <button type="button" className="text-xs text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">
                     Forgot password?
                   </button>
                 </div>
@@ -203,18 +268,30 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full rounded-lg bg-gold px-5 py-3.5 text-sm font-medium uppercase tracking-wider text-charcoal transition-all hover:bg-gold/90 disabled:opacity-50"
+                className="btn-premium w-full mt-6"
               >
-                {isLoading ? "Please wait..." : mode === "login" ? "Sign In" : "Create Account"}
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <span className="h-4 w-4 border-2 border-[#6E725F]/30 border-t-[#6E725F] rounded-full animate-spin" />
+                    Please wait...
+                  </span>
+                ) : (
+                  mode === "login" ? "Sign In" : "Create Account"
+                )}
               </button>
-            </form>
+            </motion.form>
 
-            <p className="mt-8 text-center text-xs text-white/40">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
+              className="mt-10 text-center text-[10px] text-[#F3EEE8]/40 leading-relaxed"
+            >
               By continuing, you agree to our{" "}
-              <Link href="#" className="text-gold hover:underline">Terms of Service</Link>
+              <Link href="#" className="text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">Terms of Service</Link>
               {" "}and{" "}
-              <Link href="#" className="text-gold hover:underline">Privacy Policy</Link>
-            </p>
+              <Link href="#" className="text-[#B8B8A6] hover:text-[#F3EEE8] transition-colors duration-300">Privacy Policy</Link>
+            </motion.p>
           </div>
         </motion.div>
       </div>
