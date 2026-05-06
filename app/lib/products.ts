@@ -10,6 +10,7 @@ export type Product = {
   colors: string[];
   sizes: string[];
   images: string[];
+  isNew?: boolean;
 };
 
 export const products: Product[] = [
@@ -139,6 +140,73 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80",
+    ],
+  },
+  {
+    id: "midnight-blazer",
+    name: "Midnight Tailored Blazer",
+    price: 12999,
+    category: "Men",
+    rating: 4.9,
+    description:
+      "Impeccably tailored blazer with sharp lapels and luxurious Italian wool blend.",
+    colors: ["#0F172A", "#1F2937", "#111827"],
+    sizes: ["S", "M", "L", "XL"],
+    images: [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=900&q=80",
+    ],
+    isNew: true,
+  },
+  {
+    id: "silk-wrap-blouse",
+    name: "Silk Wrap Blouse",
+    price: 8499,
+    category: "Women",
+    rating: 4.8,
+    description:
+      "Flowing silk blouse with elegant draping and timeless feminine silhouette.",
+    colors: ["#FAF8F5", "#D9D2C8", "#1F2937"],
+    sizes: ["XS", "S", "M", "L"],
+    images: [
+      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1551803091-e20673f15770?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+    ],
+    isNew: true,
+  },
+  {
+    id: "essential-linen-shirt",
+    name: "Essential Linen Shirt",
+    price: 4999,
+    category: "Unisex",
+    rating: 4.7,
+    description:
+      "Breathable organic linen shirt perfect for warm seasons and relaxed elegance.",
+    colors: ["#F3EEE8", "#B8B8A6", "#6E725F"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=80",
+    ],
+    isNew: true,
+  },
+  {
+    id: "tech-joggers-elite",
+    name: "Tech Joggers Elite",
+    price: 5299,
+    category: "GenZ",
+    rating: 4.6,
+    description:
+      "Performance-meets-style joggers with moisture-wicking fabric and sleek tapered fit.",
+    colors: ["#0A0A0A", "#374151", "#1E3A5F"],
+    sizes: ["S", "M", "L", "XL"],
+    images: [
+      "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1480429370612-2a7878e64768?auto=format&fit=crop&w=900&q=80",
     ],
   },
 ];
