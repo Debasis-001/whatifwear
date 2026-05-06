@@ -125,10 +125,10 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
   const { cartCount, openCart, wishlistCount, openSearch } = useStore();
 
   return (
-    <div className="min-h-screen bg-background-dark text-foreground-light">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-background-dark/85 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="text-sm font-semibold tracking-[0.3em] text-white">
+    <div className="min-h-screen bg-background-dark text-foreground-light overflow-x-hidden">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-background-dark/90 backdrop-blur-lg">
+        <div className="mx-auto flex h-16 md:h-18 max-w-7xl items-center justify-between px-4 sm:px-6">
+          <Link href="/" className="font-serif text-sm md:text-base font-medium tracking-[0.25em] text-white hover:text-gold transition-colors duration-500">
             WHAT IF WEAR
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -169,7 +169,9 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
         </div>
         {showArchiveLabel ? (
           <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
-            <h1 className="text-3xl font-semibold tracking-[0.25em] text-white">ARCHIVE</h1>
+            <h1 className="font-serif text-2xl md:text-3xl font-light tracking-[0.3em] text-white">
+              <span className="text-gold">THE</span> ARCHIVE
+            </h1>
           </div>
         ) : null}
       </header>
