@@ -4,39 +4,45 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F5F1ED;
+  /* Luxury Editorial Palette */
+  --background: #F5F5F2;
+  --background-dark: #0A0A0A;
   --foreground: #1A1A1A;
+  --foreground-light: #F5F5F2;
   --card: #FFFFFF;
   --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
   --primary: #1A1A1A;
-  --primary-foreground: #F5F1ED;
-  --secondary: #EAE4DC;
+  --primary-foreground: #F5F5F2;
+  --secondary: #E8E6E3;
   --secondary-foreground: #1A1A1A;
-  --muted: #EAE4DC;
+  --muted: #E8E6E3;
   --muted-foreground: #6B6B6B;
-  --accent: #C8B6A6;
+  --accent: #C9A962;
   --accent-foreground: #1A1A1A;
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #D4CCC4;
-  --input: #EAE4DC;
-  --ring: #C8B6A6;
+  --gold: #C9A962;
+  --ivory: #F5F5F2;
+  --charcoal: #2A2A2A;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E0DDD8;
+  --input: #E8E6E3;
+  --ring: #C9A962;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: #F5F1ED;
+  --radius: 0.5rem;
+  --sidebar: #F5F5F2;
   --sidebar-foreground: #1A1A1A;
   --sidebar-primary: #1A1A1A;
-  --sidebar-primary-foreground: #F5F1ED;
-  --sidebar-accent: #EAE4DC;
+  --sidebar-primary-foreground: #F5F5F2;
+  --sidebar-accent: #E8E6E3;
   --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #D4CCC4;
-  --sidebar-ring: #C8B6A6;
+  --sidebar-border: #E0DDD8;
+  --sidebar-ring: #C9A962;
 }
 
 .dark {
@@ -79,7 +85,9 @@
   --font-serif: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
+  --color-background-dark: var(--background-dark);
   --color-foreground: var(--foreground);
+  --color-foreground-light: var(--foreground-light);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -92,6 +100,9 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-ivory: var(--ivory);
+  --color-charcoal: var(--charcoal);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -141,6 +152,102 @@ html {
 
 /* Custom selection color */
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--gold);
   color: var(--foreground);
+}
+
+/* Premium glassmorphism for search modal */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Scroll reveal animation */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Premium hover lift effect */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Luxury image zoom */
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Editorial text styles */
+.text-editorial {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Gold accent underline */
+.gold-underline {
+  position: relative;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Premium button styles */
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-luxury:hover::before {
+  transform: translateX(0);
+}
+
+.btn-luxury span {
+  position: relative;
+  z-index: 1;
 }

@@ -9,6 +9,7 @@ type CartItem = {
 };
 
 type StoreContextValue = {
+  // Cart
   cart: CartItem[];
   isCartOpen: boolean;
   openCart: () => void;
@@ -19,34 +20,66 @@ type StoreContextValue = {
   clearCart: () => void;
   cartCount: number;
   cartTotal: number;
+  // Wishlist
+  wishlist: string[];
+  toggleWishlist: (id: string) => void;
+  isInWishlist: (id: string) => boolean;
+  wishlistCount: number;
+  // Search
+  isSearchOpen: boolean;
+  openSearch: () => void;
+  closeSearch: () => void;
 };
 
 const StoreContext = createContext<StoreContextValue | null>(null);
 
-const STORAGE_KEY = "whatifwear-cart";
+const CART_STORAGE_KEY = "whatifwear-cart";
+const WISHLIST_STORAGE_KEY = "whatifwear-wishlist";
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) {
-      return [];
-    }
-
-    try {
-      return JSON.parse(saved) as CartItem[];
-    } catch {
-      return [];
-    }
-  });
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [wishlist, setWishlist] = useState<string[]>([]);
   const [isCartOpen, setCartOpen] = useState(false);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
+  // Hydrate from localStorage after mount
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-  }, [cart]);
+    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+    const savedWishlist = localStorage.getItem(WISHLIST_STORAGE_KEY);
+    
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart) as CartItem[]);
+      } catch {
+        // Invalid data, use empty cart
+      }
+    }
+    
+    if (savedWishlist) {
+      try {
+        setWishlist(JSON.parse(savedWishlist) as string[]);
+      } catch {
+        // Invalid data, use empty wishlist
+      }
+    }
+    
+    setIsHydrated(true);
+  }, []);
+
+  // Persist cart to localStorage
+  useEffect(() => {
+    if (isHydrated) {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    }
+  }, [cart, isHydrated]);
+
+  // Persist wishlist to localStorage
+  useEffect(() => {
+    if (isHydrated) {
+      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+    }
+  }, [wishlist, isHydrated]);
 
   const addToCart = (id: string, qty = 1) => {
     setCart((prev) => {
@@ -75,6 +108,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
+  const toggleWishlist = (id: string) => {
+    setWishlist((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((item) => item !== id);
+      }
+      return [...prev, id];
+    });
+  };
+
+  const isInWishlist = (id: string) => wishlist.includes(id);
+
   const cartCount = useMemo(
     () => cart.reduce((count, item) => count + item.quantity, 0),
     [cart],
@@ -89,7 +133,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [cart],
   );
 
+  const wishlistCount = wishlist.length;
+
   const value: StoreContextValue = {
+    // Cart
     cart,
     isCartOpen,
     openCart: () => setCartOpen(true),
@@ -100,6 +147,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     clearCart: () => setCart([]),
     cartCount,
     cartTotal,
+    // Wishlist
+    wishlist,
+    toggleWishlist,
+    isInWishlist,
+    wishlistCount,
+    // Search
+    isSearchOpen,
+    openSearch: () => setSearchOpen(true),
+    closeSearch: () => setSearchOpen(false),
   };
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
