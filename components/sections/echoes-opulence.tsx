@@ -36,7 +36,7 @@ export function EchoesOpulence() {
   }, [])
 
   return (
-    <section className="relative bg-ivory py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-almond py-24 md:py-32 lg:py-40 overflow-hidden">
       {/* Background Typography - Large luxury style behind model */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden">
         <motion.h2
@@ -78,7 +78,7 @@ export function EchoesOpulence() {
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="order-2 md:order-1 text-center md:text-left"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-gold mb-4 inline-block">
+            <span className="text-xs uppercase tracking-[0.3em] text-carob mb-4 inline-block">
               Grandeur
             </span>
             <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-charcoal mb-6 gold-underline w-fit mx-auto md:mx-0">
@@ -135,7 +135,7 @@ export function EchoesOpulence() {
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
                     className={`h-1 rounded-full transition-all duration-700 ease-out ${
-                      idx === currentIndex ? "bg-gold w-8" : "bg-white/50 w-1"
+                      idx === currentIndex ? "bg-chai w-8" : "bg-ivory/60 w-1"
                     }`}
                     aria-label={`View outfit ${idx + 1}`}
                   />

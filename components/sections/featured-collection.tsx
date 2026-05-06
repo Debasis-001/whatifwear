@@ -37,7 +37,7 @@ export function FeaturedCollection() {
     .filter(Boolean) as typeof storeProducts
 
   return (
-    <section className="bg-background-dark py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="bg-background-warm py-20 md:py-28 lg:py-36 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-8 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -46,8 +46,8 @@ export function FeaturedCollection() {
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-10 md:mb-14 lg:mb-20 text-center"
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Curated Selection</span>
-          <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-foreground-light">
+          <span className="text-xs uppercase tracking-[0.3em] text-carob">Curated Selection</span>
+          <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-charcoal">
             Featured Collection
           </h2>
         </motion.div>
@@ -63,14 +63,14 @@ export function FeaturedCollection() {
           <div className="hidden sm:block">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 bg-charcoal/80 backdrop-blur-sm rounded-full border border-gold/30 text-gold transition-all duration-500 hover:bg-gold hover:text-charcoal hover:border-gold hover:scale-110 hover:shadow-[0_0_25px_rgba(201,169,98,0.4)] disabled:opacity-30 disabled:cursor-not-allowed -translate-x-2 md:-translate-x-4 lg:-translate-x-6"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 bg-carob/90 backdrop-blur-sm rounded-full border border-chai/40 text-chai transition-all duration-500 hover:bg-chai hover:text-carob hover:border-chai hover:scale-110 hover:shadow-[0_0_25px_rgba(210,171,128,0.35)] disabled:opacity-30 disabled:cursor-not-allowed -translate-x-2 md:-translate-x-4 lg:-translate-x-6"
               aria-label="Previous slide"
             >
               <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
             </button>
             <button
               onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 bg-charcoal/80 backdrop-blur-sm rounded-full border border-gold/30 text-gold transition-all duration-500 hover:bg-gold hover:text-charcoal hover:border-gold hover:scale-110 hover:shadow-[0_0_25px_rgba(201,169,98,0.4)] disabled:opacity-30 disabled:cursor-not-allowed translate-x-2 md:translate-x-4 lg:translate-x-6"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 bg-carob/90 backdrop-blur-sm rounded-full border border-chai/40 text-chai transition-all duration-500 hover:bg-chai hover:text-carob hover:border-chai hover:scale-110 hover:shadow-[0_0_25px_rgba(210,171,128,0.35)] disabled:opacity-30 disabled:cursor-not-allowed translate-x-2 md:translate-x-4 lg:translate-x-6"
               aria-label="Next slide"
             >
               <ChevronRight className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
@@ -117,10 +117,10 @@ export function FeaturedCollection() {
                   {({ isActive }) => (
                     <Link href={`/product/${product.id}`} className="block group">
                       <motion.div 
-                        className={`relative overflow-hidden bg-charcoal rounded-xl transition-all duration-700 ease-out ${
+                        className={`relative overflow-hidden bg-carob rounded-xl transition-all duration-700 ease-out ${
                           isActive 
-                            ? "scale-100 opacity-100 shadow-[0_25px_50px_rgba(0,0,0,0.5)]" 
-                            : "scale-[0.88] opacity-40 blur-[2px]"
+                            ? "scale-100 opacity-100 shadow-[0_25px_50px_rgba(42,37,32,0.35)]" 
+                            : "scale-[0.88] opacity-50 blur-[1px]"
                         }`}
                         whileHover={isActive ? { y: -8, transition: { duration: 0.4 } } : {}}
                       >
@@ -131,7 +131,7 @@ export function FeaturedCollection() {
                             e.stopPropagation()
                             toggleWishlist(product.id)
                           }}
-                          className={`absolute top-3 right-3 md:top-4 md:right-4 z-10 p-2 md:p-2.5 bg-black/60 backdrop-blur-sm rounded-full transition-all duration-500 hover:scale-110 hover:bg-black/80 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+                          className={`absolute top-3 right-3 md:top-4 md:right-4 z-10 p-2 md:p-2.5 bg-carob/80 backdrop-blur-sm rounded-full transition-all duration-500 hover:scale-110 hover:bg-carob ${isActive ? 'opacity-100' : 'opacity-0'}`}
                           aria-label={`Add ${product.name} to wishlist`}
                         >
                           <motion.div
@@ -141,8 +141,8 @@ export function FeaturedCollection() {
                             <Heart
                               className={`h-3.5 w-3.5 md:h-4 md:w-4 transition-colors duration-400 ${
                                 isInWishlist(product.id)
-                                  ? "fill-gold text-gold"
-                                  : "text-white/60 hover:text-gold"
+                                  ? "fill-chai text-chai"
+                                  : "text-ivory/70 hover:text-chai"
                               }`}
                             />
                           </motion.div>
@@ -155,10 +155,10 @@ export function FeaturedCollection() {
                             e.stopPropagation()
                             addToCart(product.id)
                           }}
-                          className={`absolute bottom-20 md:bottom-24 right-3 md:right-4 z-10 p-2 md:p-2.5 bg-gold rounded-full transition-all duration-500 hover:scale-110 hover:bg-gold/90 shadow-lg ${isActive ? 'opacity-0 group-hover:opacity-100' : 'opacity-0'}`}
+                          className={`absolute bottom-20 md:bottom-24 right-3 md:right-4 z-10 p-2 md:p-2.5 bg-chai rounded-full transition-all duration-500 hover:scale-110 hover:bg-chai/90 shadow-lg ${isActive ? 'opacity-0 group-hover:opacity-100' : 'opacity-0'}`}
                           aria-label={`Add ${product.name} to cart`}
                         >
-                          <ShoppingBag className="h-3.5 w-3.5 md:h-4 md:w-4 text-charcoal" />
+                          <ShoppingBag className="h-3.5 w-3.5 md:h-4 md:w-4 text-carob" />
                         </button>
 
                         {/* Product Image */}
@@ -171,15 +171,15 @@ export function FeaturedCollection() {
                             sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 320px"
                           />
                           {/* Premium gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-carob/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
 
                         {/* Product Info */}
-                        <div className="p-4 md:p-5 text-center bg-charcoal">
-                          <h3 className="font-serif text-sm md:text-base lg:text-lg font-medium text-foreground-light line-clamp-1">
+                        <div className="p-4 md:p-5 text-center bg-carob">
+                          <h3 className="font-serif text-sm md:text-base lg:text-lg font-medium text-ivory line-clamp-1">
                             {product.name}
                           </h3>
-                          <p className="mt-1 md:mt-1.5 text-xs md:text-sm text-white/60">
+                          <p className="mt-1 md:mt-1.5 text-xs md:text-sm text-ivory/70">
                             {"\u20B9"}{product.price.toLocaleString("en-IN")}
                           </p>
                         </div>
@@ -192,17 +192,17 @@ export function FeaturedCollection() {
           </div>
 
           {/* Mobile Navigation Dots */}
-          <div className="flex sm:hidden justify-center gap-2 mt-6">
+          <div className="flex sm:hidden justify-center gap-3 mt-6">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
-              className="p-2.5 bg-charcoal/60 rounded-full border border-gold/30 text-gold transition-all duration-300 active:scale-95"
+              className="p-2.5 bg-carob/80 rounded-full border border-chai/40 text-chai transition-all duration-300 active:scale-95"
               aria-label="Previous"
             >
               <ChevronLeft className="h-4 w-4" strokeWidth={2} />
             </button>
             <button
               onClick={() => swiperRef.current?.slideNext()}
-              className="p-2.5 bg-charcoal/60 rounded-full border border-gold/30 text-gold transition-all duration-300 active:scale-95"
+              className="p-2.5 bg-carob/80 rounded-full border border-chai/40 text-chai transition-all duration-300 active:scale-95"
               aria-label="Next"
             >
               <ChevronRight className="h-4 w-4" strokeWidth={2} />

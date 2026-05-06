@@ -33,7 +33,7 @@ export function ModelSplit() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1.08, 1])
 
   return (
-    <section ref={containerRef} className="relative bg-ivory py-16 md:py-0">
+    <section ref={containerRef} className="relative bg-vanilla py-16 md:py-0">
       <div className="grid md:grid-cols-2">
         {/* Left - Models Grid */}
         <div className="relative overflow-hidden">
@@ -50,13 +50,13 @@ export function ModelSplit() {
                   />
                   {/* Vertical Line */}
                   {index < 2 && (
-                    <div className="absolute right-0 top-0 h-full w-px bg-gold/30" />
+                    <div className="absolute right-0 top-0 h-full w-px bg-chai/40" />
                   )}
                 </div>
               ))}
             </div>
             {/* Horizontal Line */}
-            <div className="absolute left-0 top-1/2 w-full h-px bg-gold/30" />
+            <div className="absolute left-0 top-1/2 w-full h-px bg-chai/40" />
             
             {/* Overlay Text */}
             <motion.div 
@@ -82,9 +82,9 @@ export function ModelSplit() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col justify-center bg-ivory px-8 py-14 md:px-14 md:py-20 lg:px-24 lg:py-0"
+          className="flex flex-col justify-center bg-vanilla px-8 py-14 md:px-14 md:py-20 lg:px-24 lg:py-0"
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-gold mb-4">Premium Summer</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-carob mb-4">Premium Summer</span>
           <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-charcoal mb-6 gold-underline w-fit">
             Effortless Style
           </h3>

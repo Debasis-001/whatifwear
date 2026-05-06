@@ -28,7 +28,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-ivory">
+    <footer className="bg-carob text-ivory">
       <div className="mx-auto max-w-7xl px-8 md:px-12 py-16 md:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -39,7 +39,7 @@ export function Footer() {
         >
           {/* About Us */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-chai uppercase tracking-[0.2em]">
               About Us
             </h3>
             <ul className="space-y-3 md:space-y-4">
@@ -47,7 +47,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs md:text-sm text-ivory/60 hover:text-gold transition-colors duration-500"
+                    className="text-xs md:text-sm text-ivory/60 hover:text-chai transition-colors duration-500"
                   >
                     {link.name}
                   </Link>
@@ -58,7 +58,7 @@ export function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-chai uppercase tracking-[0.2em]">
               Customer Care
             </h3>
             <ul className="space-y-3 md:space-y-4">
@@ -66,7 +66,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs md:text-sm text-ivory/60 hover:text-gold transition-colors duration-500"
+                    className="text-xs md:text-sm text-ivory/60 hover:text-chai transition-colors duration-500"
                   >
                     {link.name}
                   </Link>
@@ -77,7 +77,7 @@ export function Footer() {
 
           {/* Follow Us */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-chai uppercase tracking-[0.2em]">
               Follow Us
             </h3>
             <p className="text-xs md:text-sm text-ivory/60 mb-5 md:mb-6 leading-[1.7]">
@@ -88,7 +88,7 @@ export function Footer() {
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="text-ivory/50 hover:text-gold transition-colors duration-500"
+                  className="text-ivory/50 hover:text-chai transition-colors duration-500"
                   aria-label={social.name}
                 >
                   <social.icon className="h-5 w-5" strokeWidth={1.25} />
@@ -99,7 +99,7 @@ export function Footer() {
 
           {/* Download Apps */}
           <div>
-            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-gold uppercase tracking-[0.2em]">
+            <h3 className="font-serif text-sm md:text-base font-medium mb-5 md:mb-6 text-chai uppercase tracking-[0.2em]">
               Download Our Apps
             </h3>
             <div className="flex flex-col gap-4">
@@ -132,9 +132,9 @@ export function Footer() {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 md:mt-18 pt-8 border-t border-ivory/10">
+        <div className="mt-14 md:mt-18 pt-8 border-t border-ivory/15">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <Link href="/" className="font-serif text-lg tracking-[0.25em] text-gold">
+            <Link href="/" className="font-serif text-lg tracking-[0.25em] text-chai">
               WHAT IF WEAR
             </Link>
             <p className="text-center text-xs text-ivory/40 tracking-[0.1em]">

@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function SpringSummer() {
   return (
-    <section className="bg-background-dark py-20 md:py-28 lg:py-36">
+    <section className="bg-carob py-20 md:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
         <div className="grid gap-12 md:gap-16 lg:gap-24 md:grid-cols-2 items-center">
           {/* Left - Images */}
@@ -45,30 +45,30 @@ export function SpringSummer() {
             transition={{ duration: 1.2, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex flex-col justify-center"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-gold mb-4">New Season</span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-foreground-light leading-[0.95] tracking-wide">
+            <span className="text-xs uppercase tracking-[0.3em] text-chai mb-4">New Season</span>
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-ivory leading-[0.95] tracking-wide">
               SPRING
               <br />
               <span className="ml-6 md:ml-12 lg:ml-16">SUMMER</span>
-              <span className="text-gold">/26</span>
+              <span className="text-chai">/26</span>
             </h2>
-            <p className="mt-8 md:mt-10 max-w-md text-sm md:text-base text-white/60 leading-[1.8]">
+            <p className="mt-8 md:mt-10 max-w-md text-sm md:text-base text-ivory/70 leading-[1.8]">
               Designed for warm days and effortless evenings. Our Spring / Summer
               &apos;26 collection showcases breathable fabrics, earthy tones, and
               relaxed silhouettes to match your every mood.
             </p>
-            <p className="mt-4 max-w-md text-xs md:text-sm text-white/40 leading-[1.8]">
+            <p className="mt-4 max-w-md text-xs md:text-sm text-ivory/50 leading-[1.8]">
               From coastal getaways to city strolls — a style that moves 
               with you, wherever the season takes you.
             </p>
             <div className="mt-8 md:mt-10">
               <Link
                 href="/shop"
-                className="group inline-flex items-center gap-3 text-sm md:text-base font-medium text-gold transition-all duration-500"
+                className="group inline-flex items-center gap-3 text-sm md:text-base font-medium text-chai transition-all duration-500"
               >
                 <span className="relative">
                   Explore Now
-                  <span className="absolute left-0 bottom-0 h-px w-full bg-gold origin-left transition-transform duration-500 group-hover:scale-x-0" />
+                  <span className="absolute left-0 bottom-0 h-px w-full bg-chai origin-left transition-transform duration-500 group-hover:scale-x-0" />
                 </span>
                 <span className="transition-transform duration-500 group-hover:translate-x-2">&rarr;</span>
               </Link>

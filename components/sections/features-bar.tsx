@@ -48,7 +48,7 @@ const itemVariants = {
 
 export function FeaturesBar() {
   return (
-    <section className="hidden md:block bg-ivory py-20 md:py-24 lg:py-28 border-y border-charcoal/10">
+    <section className="hidden md:block bg-background py-20 md:py-24 lg:py-28 border-y border-carob/10">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
         <motion.div
           variants={containerVariants}
@@ -64,8 +64,8 @@ export function FeaturesBar() {
               className="text-center px-4"
             >
               <div className="mb-5 md:mb-6 flex justify-center">
-                <div className="p-3 rounded-full border border-gold/30 bg-gold/5">
-                  <feature.icon className="h-6 w-6 md:h-7 md:w-7 text-gold" strokeWidth={1.25} />
+                <div className="p-3 rounded-full border border-carob/30 bg-carob/5">
+                  <feature.icon className="h-6 w-6 md:h-7 md:w-7 text-carob" strokeWidth={1.25} />
                 </div>
               </div>
               <h3 className="font-serif text-base md:text-lg lg:text-xl font-medium text-charcoal">
