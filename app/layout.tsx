@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { StoreProvider } from '@/app/context/store-context'  // ✅ ADD THIS
+import { StoreProvider } from '@/app/context/store-context'
+import { AuthProvider } from '@/app/context/auth-context'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -47,10 +48,11 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${inter.variable} bg-background`}>
       <body className="font-sans antialiased">
         
-        {/* ✅ IMPORTANT FIX */}
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+        <AuthProvider>
+          <StoreProvider>
+            {children}
+          </StoreProvider>
+        </AuthProvider>
 
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

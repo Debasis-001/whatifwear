@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { products } from "@/app/lib/products";
 import { useStore } from "@/app/context/store-context";
 import { CartIcon, HeartIcon, ProfileIcon, SearchIcon } from "@/app/components/store/icons";
+import { SearchModal } from "@/components/search/search-modal";
 
 type StoreShellProps = {
   children: React.ReactNode;
@@ -46,7 +47,7 @@ function CartPanel() {
                   <Link
                     href="/shop"
                     onClick={closeCart}
-                    className="mt-4 inline-block rounded-full border border-[#8CFB5A]/50 px-4 py-2 text-sm text-[#8CFB5A] hover:bg-[#8CFB5A]/10"
+                    className="mt-4 inline-block rounded-full border border-gold/50 px-4 py-2 text-sm text-gold hover:bg-gold/10"
                   >
                     Explore Collection
                   </Link>
@@ -67,7 +68,7 @@ function CartPanel() {
                           <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-white">{product.name}</p>
                             <p className="text-sm text-white/70">
-                              ₹{product.price.toLocaleString("en-IN")}
+                              {"\u20B9"}{product.price.toLocaleString("en-IN")}
                             </p>
                             <div className="mt-2 flex items-center gap-2">
                               <button
@@ -104,11 +105,11 @@ function CartPanel() {
             <div className="absolute bottom-5 left-5 right-5 border-t border-white/10 pt-4">
               <div className="mb-3 flex items-center justify-between text-white/80">
                 <span>Total</span>
-                <span className="font-semibold text-white">₹{cartTotal.toLocaleString("en-IN")}</span>
+                <span className="font-semibold text-white">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
               </div>
               <button
                 type="button"
-                className="w-full rounded-full bg-[#8CFB5A] px-4 py-3 text-sm font-semibold text-black transition active:scale-[0.99]"
+                className="w-full rounded-full bg-gold px-4 py-3 text-sm font-semibold text-charcoal transition active:scale-[0.99]"
               >
                 Checkout
               </button>
@@ -121,35 +122,47 @@ function CartPanel() {
 }
 
 export function StoreShell({ children, showArchiveLabel = false }: StoreShellProps) {
-  const { cartCount, openCart } = useStore();
+  const { cartCount, openCart, wishlistCount, openSearch } = useStore();
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0B0B0B]/85 backdrop-blur-md">
+    <div className="min-h-screen bg-background-dark text-foreground-light">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-background-dark/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link href="/" className="text-sm font-semibold tracking-[0.3em] text-white">
             WHAT IF WEAR
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/shop" className="rounded-full p-2 text-white/70 transition hover:text-[#8CFB5A]">
+            <button
+              type="button"
+              onClick={openSearch}
+              className="rounded-full p-2 text-white/70 transition hover:text-gold"
+            >
               <SearchIcon className="h-4 w-4" />
-            </Link>
-            <button type="button" className="rounded-full p-2 text-white/70 transition hover:text-[#8CFB5A]">
-              <HeartIcon className="h-4 w-4" />
             </button>
+            <Link
+              href="/wishlist"
+              className="relative rounded-full p-2 text-white/70 transition hover:text-gold"
+            >
+              <HeartIcon className="h-4 w-4" />
+              {wishlistCount > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-charcoal">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             <button
               type="button"
               onClick={openCart}
-              className="relative rounded-full p-2 text-white/80 transition hover:text-[#8CFB5A]"
+              className="relative rounded-full p-2 text-white/80 transition hover:text-gold"
             >
               <CartIcon className="h-4 w-4" />
               {cartCount > 0 ? (
-                <span className="absolute -right-0.5 -top-0.5 rounded-full bg-[#8CFB5A] px-1.5 text-[10px] font-semibold text-black">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-charcoal">
                   {cartCount}
                 </span>
               ) : null}
             </button>
-            <Link href="/profile" className="rounded-full p-2 text-white/70 transition hover:text-[#8CFB5A]">
+            <Link href="/profile" className="rounded-full p-2 text-white/70 transition hover:text-gold">
               <ProfileIcon className="h-4 w-4" />
             </Link>
           </div>
@@ -172,28 +185,37 @@ export function StoreShell({ children, showArchiveLabel = false }: StoreShellPro
       <button
         type="button"
         onClick={openCart}
-        className="fixed bottom-20 right-4 z-20 rounded-full border border-[#8CFB5A]/50 bg-[#101010] p-3 text-[#8CFB5A] shadow-[0_0_16px_rgba(140,251,90,0.35)] transition hover:scale-105 md:bottom-6"
+        className="fixed bottom-20 right-4 z-20 rounded-full border border-gold/50 bg-charcoal p-3 text-gold shadow-[0_0_16px_rgba(201,169,98,0.35)] transition hover:scale-105 md:bottom-6"
       >
         <CartIcon className="h-5 w-5" />
       </button>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-white/10 bg-[#090909]/95 px-4 py-2 backdrop-blur md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-white/10 bg-background-dark/95 px-4 py-2 backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-md items-center justify-between text-xs text-white/70">
-          <Link href="/" className="rounded-full px-3 py-2">
+          <Link href="/" className="rounded-full px-3 py-2 hover:text-gold">
             Home
           </Link>
-          <Link href="/shop" className="rounded-full px-3 py-2">
+          <Link href="/shop" className="rounded-full px-3 py-2 hover:text-gold">
             Shop
           </Link>
-          <button type="button" onClick={openCart} className="rounded-full px-3 py-2">
+          <Link href="/wishlist" className="relative rounded-full px-3 py-2 hover:text-gold">
+            Wishlist
+            {wishlistCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-charcoal">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+          <button type="button" onClick={openCart} className="rounded-full px-3 py-2 hover:text-gold">
             Cart
           </button>
-          <Link href="/profile" className="rounded-full px-3 py-2">
+          <Link href="/profile" className="rounded-full px-3 py-2 hover:text-gold">
             Profile
           </Link>
         </div>
       </nav>
       <CartPanel />
+      <SearchModal />
     </div>
   );
 }

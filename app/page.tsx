@@ -7,6 +7,8 @@ import { FeaturesBar } from "@/components/sections/features-bar"
 import { RelatedProducts } from "@/components/sections/related-products"
 import { Newsletter } from "@/components/sections/newsletter"
 import { Footer } from "@/components/sections/footer"
+import { SearchModal } from "@/components/search/search-modal"
+import { CartPanel } from "@/components/cart/cart-panel"
 
 export default function Home() {
   return (
@@ -20,6 +22,8 @@ export default function Home() {
       <RelatedProducts />
       <Newsletter />
       <Footer />
+      <SearchModal />
+      <CartPanel />
     </main>
   )
 }

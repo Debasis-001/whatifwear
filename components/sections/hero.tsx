@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, Search, Heart, ShoppingBag } from "lucide-react"
+import { useStore } from "@/app/context/store-context"
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -14,6 +15,7 @@ const navLinks = [
 
 export function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { openSearch, wishlistCount, cartCount, openCart } = useStore()
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -57,7 +59,7 @@ export function Hero() {
                 >
                   <Link
                     href={link.href}
-                    className="text-[11px] font-medium text-white/70 hover:text-white transition-colors duration-500 tracking-[0.15em] uppercase"
+                    className="text-[11px] font-medium text-white/70 hover:text-gold transition-colors duration-500 tracking-[0.15em] uppercase"
                   >
                     {link.name}
                   </Link>
@@ -93,22 +95,48 @@ export function Hero() {
               transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
               className="hidden md:flex items-center gap-7 flex-1 justify-end"
             >
-              <button className="text-white/70 hover:text-white transition-colors duration-500" aria-label="Search">
+              <button 
+                onClick={openSearch}
+                className="text-white/70 hover:text-gold transition-colors duration-500" 
+                aria-label="Search"
+              >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
-              <button className="text-white/70 hover:text-white transition-colors duration-500" aria-label="Wishlist">
+              <Link 
+                href="/wishlist" 
+                className="relative text-white/70 hover:text-gold transition-colors duration-500" 
+                aria-label="Wishlist"
+              >
                 <Heart className="h-5 w-5" strokeWidth={1.5} />
-              </button>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
             </motion.div>
 
             {/* Mobile Icons */}
             <div className="flex md:hidden items-center gap-5">
-              <button className="text-white/70 hover:text-white transition-colors duration-500" aria-label="Search">
+              <button 
+                onClick={openSearch}
+                className="text-white/70 hover:text-gold transition-colors duration-500" 
+                aria-label="Search"
+              >
                 <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
-              <button className="text-white/70 hover:text-white transition-colors duration-500" aria-label="Wishlist">
+              <Link 
+                href="/wishlist" 
+                className="relative text-white/70 hover:text-gold transition-colors duration-500" 
+                aria-label="Wishlist"
+              >
                 <Heart className="h-5 w-5" strokeWidth={1.5} />
-              </button>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
             </div>
           </div>
         </div>
@@ -127,12 +155,19 @@ export function Hero() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="block py-4 text-white/70 hover:text-white transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
+                  className="block py-4 text-white/70 hover:text-gold transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
+              <Link
+                href="/wishlist"
+                className="block py-4 text-white/70 hover:text-gold transition-colors duration-500 text-sm tracking-[0.12em] uppercase"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
+              </Link>
             </div>
           </motion.div>
         )}
@@ -144,9 +179,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8 md:mb-10 text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-white/60"
+          className="mb-8 md:mb-10 text-[10px] md:text-[11px] uppercase tracking-[0.5em] text-gold"
         >
-          Summer Collection
+          Summer Collection 2026
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 35 }}
@@ -173,12 +208,9 @@ export function Hero() {
         >
           <Link
             href="/shop"
-            className="group relative inline-block border border-white/40 bg-transparent px-12 md:px-14 py-4 md:py-[18px] text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-white overflow-hidden transition-all duration-700"
+            className="btn-luxury inline-block border border-gold/60 bg-transparent px-12 md:px-14 py-4 md:py-[18px] text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-white"
           >
-            <span className="relative z-10 transition-colors duration-700 group-hover:text-black">
-              View Collection
-            </span>
-            <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
+            <span>View Collection</span>
           </Link>
         </motion.div>
       </div>
@@ -198,7 +230,7 @@ export function Hero() {
           <motion.div 
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="h-2 w-1 rounded-full bg-white/60" 
+            className="h-2 w-1 rounded-full bg-gold/60" 
           />
         </motion.div>
       </motion.div>
@@ -208,13 +240,16 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.4, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-foreground text-background p-4 md:p-5 rounded-full shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-3xl"
+        onClick={openCart}
+        className="fixed bottom-8 right-8 md:bottom-10 md:right-10 z-50 bg-gold text-charcoal p-4 md:p-5 rounded-full shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,169,98,0.4)]"
         aria-label="Shopping Cart"
       >
         <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
-        <span className="absolute -top-1 -right-1 bg-accent text-foreground text-[10px] font-medium w-5 h-5 rounded-full flex items-center justify-center">
-          0
-        </span>
+        {cartCount > 0 && (
+          <span className="absolute -top-1 -right-1 bg-charcoal text-gold text-[10px] font-medium w-5 h-5 rounded-full flex items-center justify-center">
+            {cartCount}
+          </span>
+        )}
       </motion.button>
     </section>
   )

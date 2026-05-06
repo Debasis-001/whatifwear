@@ -2,46 +2,10 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Heart, Star, Plus } from "lucide-react"
-import { useState } from "react"
-
-const products = [
-  {
-    id: 1,
-    name: "White Minimal Tee",
-    price: "SAR 299.00",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop",
-    rating: 4,
-  },
-  {
-    id: 2,
-    name: "Vintage Black",
-    price: "SAR 349.00",
-    image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=500&fit=crop",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Cream Oversized",
-    price: "SAR 279.00",
-    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=500&fit=crop",
-    rating: 4,
-  },
-  {
-    id: 4,
-    name: "Sage Green Tee",
-    price: "SAR 319.00",
-    image: "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?w=400&h=500&fit=crop",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Soft Grey Basic",
-    price: "SAR 289.00",
-    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=500&fit=crop",
-    rating: 4,
-  },
-]
+import Link from "next/link"
+import { Heart, Plus, Star } from "lucide-react"
+import { useStore } from "@/app/context/store-context"
+import { products as storeProducts, type Product } from "@/app/lib/products"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -63,27 +27,39 @@ const itemVariants = {
   },
 }
 
-export function RelatedProducts() {
-  const [wishlist, setWishlist] = useState<number[]>([])
+interface RelatedProductsProps {
+  currentProductId?: string
+  title?: string
+  products?: Product[]
+}
 
-  const toggleWishlist = (id: number) => {
-    setWishlist((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    )
-  }
+export function RelatedProducts({ 
+  currentProductId, 
+  title = "You May Also Like",
+  products: customProducts 
+}: RelatedProductsProps) {
+  const { isInWishlist, toggleWishlist, addToCart } = useStore()
+
+  // Use custom products or filter out current product from store products
+  const products = customProducts || storeProducts
+    .filter((p) => p.id !== currentProductId)
+    .slice(0, 5)
 
   return (
     <section className="bg-background py-20 md:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-12 md:mb-16 lg:mb-20 text-center font-serif text-xl md:text-2xl lg:text-3xl font-light tracking-[0.12em] text-foreground"
+          className="mb-12 md:mb-16 lg:mb-20 text-center"
         >
-          Related Products
-        </motion.h2>
+          <span className="text-xs uppercase tracking-[0.3em] text-gold">Discover More</span>
+          <h2 className="mt-4 font-serif text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-foreground">
+            {title}
+          </h2>
+        </motion.div>
 
         <motion.div
           variants={containerVariants}
@@ -98,51 +74,68 @@ export function RelatedProducts() {
               variants={itemVariants}
               className="group"
             >
-              <div className="relative overflow-hidden bg-card rounded-sm shadow-sm transition-all duration-700 ease-out hover:shadow-xl">
-                {/* Wishlist Button */}
-                <button
-                  onClick={() => toggleWishlist(product.id)}
-                  className="absolute top-3 right-3 md:top-4 md:right-4 z-10 p-2 md:p-2.5 bg-background/90 rounded-full backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-background"
-                  aria-label={`Add ${product.name} to wishlist`}
-                >
-                  <motion.div
-                    animate={wishlist.includes(product.id) ? { scale: [1, 1.3, 1] } : {}}
-                    transition={{ duration: 0.4 }}
+              <Link href={`/product/${product.id}`} className="block">
+                <div className="relative overflow-hidden bg-card rounded-xl shadow-sm transition-all duration-700 ease-out hover:shadow-xl hover-lift">
+                  {/* Wishlist Button */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      toggleWishlist(product.id)
+                    }}
+                    className="absolute top-3 right-3 md:top-4 md:right-4 z-10 p-2 md:p-2.5 bg-background/90 rounded-full backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:bg-background"
+                    aria-label={`Add ${product.name} to wishlist`}
                   >
-                    <Heart
-                      className={`h-3.5 w-3.5 md:h-4 md:w-4 transition-colors duration-400 ${
-                        wishlist.includes(product.id)
-                          ? "fill-red-500 text-red-500"
-                          : "text-foreground/50"
-                      }`}
+                    <motion.div
+                      animate={isInWishlist(product.id) ? { scale: [1, 1.3, 1] } : {}}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <Heart
+                        className={`h-3.5 w-3.5 md:h-4 md:w-4 transition-colors duration-400 ${
+                          isInWishlist(product.id)
+                            ? "fill-gold text-gold"
+                            : "text-foreground/50 hover:text-gold"
+                        }`}
+                      />
+                    </motion.div>
+                  </button>
+
+                  {/* Product Image */}
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, 20vw"
                     />
-                  </motion.div>
-                </button>
+                  </div>
 
-                {/* Product Image */}
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 20vw"
-                  />
+                  {/* Add to Cart Button */}
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      addToCart(product.id)
+                    }}
+                    className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 p-2 md:p-2.5 bg-gold rounded-full transition-all duration-500 hover:scale-110 hover:bg-gold/90 shadow-lg"
+                    aria-label={`Add ${product.name} to cart`}
+                  >
+                    <Plus className="h-3.5 w-3.5 md:h-4 md:w-4 text-charcoal" strokeWidth={2} />
+                  </button>
                 </div>
-
-                {/* Add to Cart Button */}
-                <button 
-                  className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 p-2 md:p-2.5 bg-foreground/90 rounded-full transition-all duration-500 hover:scale-110 hover:bg-foreground shadow-lg"
-                  aria-label={`Add ${product.name} to cart`}
-                >
-                  <Plus className="h-3.5 w-3.5 md:h-4 md:w-4 text-background" strokeWidth={2} />
-                </button>
-              </div>
+              </Link>
 
               {/* Product Info */}
               <div className="mt-4 md:mt-5 px-0.5">
-                <p className="text-xs md:text-sm font-medium text-muted-foreground">{product.price}</p>
-                <h3 className="text-xs md:text-sm text-foreground mt-1">{product.name}</h3>
+                <Link href={`/product/${product.id}`} className="group/link">
+                  <p className="text-xs md:text-sm font-medium text-muted-foreground">
+                    {"\u20B9"}{product.price.toLocaleString("en-IN")}
+                  </p>
+                  <h3 className="text-xs md:text-sm text-foreground mt-1 transition-colors group-hover/link:text-gold">
+                    {product.name}
+                  </h3>
+                </Link>
                 {/* Rating */}
                 <div className="mt-2 flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -150,7 +143,7 @@ export function RelatedProducts() {
                       key={i}
                       className={`h-2.5 w-2.5 md:h-3 md:w-3 ${
                         i < product.rating
-                          ? "fill-amber-400 text-amber-400"
+                          ? "fill-gold text-gold"
                           : "text-muted-foreground/20"
                       }`}
                     />
