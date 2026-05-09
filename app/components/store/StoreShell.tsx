@@ -128,19 +128,33 @@ function CartPanel() {
               )}
             </div>
             
-            {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#FDFCFA]/10 bg-gradient-to-t from-[#134B42] to-transparent pt-8">
-              <div className="mb-4 flex items-center justify-between">
-                <span className="text-[#FDFCFA]/70 text-sm">Subtotal</span>
-                <span className="font-serif text-xl text-[#EEA83B]">{"\u20B9"}{cartTotal.toLocaleString("en-IN")}</span>
-              </div>
-              <button
-                type="button"
-                className="btn-premium w-full"
-              >
-                Checkout
-              </button>
-            </div>
+           {/* Footer */}
+<div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#FDFCFA]/10 bg-gradient-to-t from-[#134B42] to-transparent pt-8">
+  <div className="mb-4 flex items-center justify-between">
+    <span className="text-[#FDFCFA]/70 text-sm">
+      Subtotal
+    </span>
+
+    <span className="font-serif text-xl text-[#EEA83B]">
+      {"\u20B9"}
+      {cartTotal.toLocaleString("en-IN")}
+    </span>
+  </div>
+
+  <button
+    type="button"
+    onClick={() => {
+      closeCart();
+
+      setTimeout(() => {
+        window.location.href = "/checkout";
+      }, 300);
+    }}
+    className="btn-premium w-full"
+  >
+    Checkout
+  </button>
+</div>
           </motion.aside>
         </>
       ) : null}
