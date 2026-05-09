@@ -22,20 +22,20 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "hello@whatifwear.com",
+    details: "www.whatifwear.in@gmail.com",
     subtext: "We'll respond within 24 hours",
   },
   {
     icon: Phone,
     title: "Call Us",
-    details: "+91 98765 43210",
+    details: "+91 9078314417",
     subtext: "Mon - Sat, 10am - 7pm IST",
   },
   {
     icon: MapPin,
     title: "Visit Us",
-    details: "123 Fashion Street",
-    subtext: "Mumbai, Maharashtra 400001",
+    details: "Hyderabad",
+    subtext: "Boduppal,Hyderabad,500092",
   },
   {
     icon: Clock,
@@ -54,7 +54,7 @@ const socialLinks = [
 const faqs = [
   {
     question: "What is your return policy?",
-    answer: "We offer a 30-day return policy on all unworn items with original tags attached. Returns are free for all domestic orders.",
+    answer: "We offer a 7-day return policy on all unworn items with original tags attached. Returns are free for all domestic orders.",
   },
   {
     question: "How long does shipping take?",
@@ -318,7 +318,7 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
                       className="w-full bg-[#1A1A1A] border border-[#262626] px-4 py-3.5 text-[#F5F5F5] placeholder-[#666666] text-sm focus:outline-none focus:border-[#C9A86C] transition-colors duration-300"
-                      placeholder="John Doe"
+                      placeholder="Derick Paul"
                     />
                   </div>
                   <div>
@@ -332,7 +332,7 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
                       className="w-full bg-[#1A1A1A] border border-[#262626] px-4 py-3.5 text-[#F5F5F5] placeholder-[#666666] text-sm focus:outline-none focus:border-[#C9A86C] transition-colors duration-300"
-                      placeholder="john@example.com"
+                      placeholder="derick@example.com"
                     />
                   </div>
                 </div>
@@ -419,8 +419,8 @@ export default function ContactPage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-[#F5F5F5]">
                     <MapPin className="h-10 w-10 mx-auto mb-3 text-[#C9A86C]" strokeWidth={1.5} />
-                    <p className="font-serif text-lg">Mumbai, India</p>
-                    <p className="text-sm text-[#A3A3A3] mt-1">123 Fashion Street</p>
+                    <p className="font-serif text-lg">Hyderabad, India</p>
+                    <p className="text-sm text-[#A3A3A3] mt-1">Boduppal,Hyderabad</p>
                   </div>
                 </div>
               </div>
