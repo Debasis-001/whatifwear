@@ -45,9 +45,9 @@ const values = [
 ]
 
 const milestones = [
-  { year: "2020", title: "The Beginning", description: "Founded with a vision to redefine luxury fashion." },
-  { year: "2022", title: "Expansion", description: "Launched our first flagship collection with 50+ pieces." },
-  { year: "2024", title: "Global Reach", description: "Expanded to serve customers across 30+ countries." },
+  { year: "2026", title: "The Beginning", description: "Founded with a vision to redefine luxury fashion." },
+  { year: "2026", title: "Expansion", description: "Launched our first flagship collection with 50+ pieces." },
+  { year: "2026", title: "Global Reach", description: "Expanded to serve customers across 30+ countries." },
   { year: "2026", title: "Today", description: "Leading the way in sustainable luxury fashion." },
 ]
 
@@ -67,7 +67,7 @@ export default function AboutPage() {
   return (
     <div ref={containerRef} className="min-h-screen bg-[#F8F6F3] overflow-x-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 nav-floating">
+      <nav className="sticky top-0 left-0 right-0 z-50 nav-floating bg-[#134B42]">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="flex h-16 md:h-20 items-center justify-between">
             {/* Left - Nav Links (Desktop) */}
@@ -191,13 +191,16 @@ export default function AboutPage() {
       </nav>
 
       {/* Hero Section - Clean image */}
-      <section className="relative h-[70vh] md:h-[80vh] overflow-hidden">
-        <motion.div style={{ y: parallaxY }} className="absolute inset-0">
+      <section className="relative h-[65vh] md:h-[72vh] overflow-hidden">
+      <motion.div
+  style={{ y: parallaxY }}
+  className="absolute inset-0"
+>
           <Image
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80"
+            src="/about-us-final.png"
             alt="About WHAT IF WEAR"
             fill
-            className="object-cover"
+           className="object-cover object-[center_top]"
             priority
           />
         </motion.div>
@@ -358,7 +361,7 @@ export default function AboutPage() {
             <div className="space-y-12 md:space-y-16">
               {milestones.map((milestone, index) => (
                 <motion.div
-                  key={milestone.year}
+                key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -396,13 +399,13 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-[#EEA83B]/40">
+            <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-[#EEA83B]/40 aspect-square">
               <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+                src="/founder1.png"
                 alt="Founder"
-                width={96}
-                height={96}
-                className="object-cover"
+                fill
+                
+              className="object-cover object-top scale-110"
               />
             </div>
             <blockquote className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#FDFCFA] leading-[1.4] italic">
@@ -410,7 +413,7 @@ export default function AboutPage() {
             </blockquote>
             <div className="mt-8">
               <p className="text-[#EEA83B] font-semibold tracking-wide">The Founders</p>
-              <p className="text-[#FDFCFA]/60 text-sm mt-1">WHAT IF WEAR</p>
+              <p className="text-[#FDFCFA]/60 text-sm mt-1">DEBASIS AND JAGRITI</p>
             </div>
           </motion.div>
         </div>
