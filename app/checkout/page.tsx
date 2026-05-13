@@ -15,19 +15,36 @@ import {
   MapPinned,
 } from "lucide-react";
 
+import { useRouter } from "next/navigation";
+
 import { useStore } from "@/app/context/store-context";
 import { products } from "@/app/lib/products";
+import { supabase } from "@/lib/supabase";
+
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 export default function CheckoutPage() {
+  const router = useRouter();
+
   const {
     cart,
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
     cartTotal,
+    clearCart,
   } = useStore();
 
-  const [coupon, setCoupon] = useState("WHATIF10");
+  const [coupon, setCoupon] = useState("");
+  const [appliedCoupon, setAppliedCoupon] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -41,8 +58,11 @@ export default function CheckoutPage() {
     state: "",
   });
 
-  const [errors, setErrors] = useState<any>({});
-  const [rememberAddress, setRememberAddress] = useState(false);
+  const [errors, setErrors] =
+    useState<any>({});
+
+  const [rememberAddress, setRememberAddress] =
+    useState(false);
 
   useEffect(() => {
     const savedAddress = localStorage.getItem(
@@ -66,23 +86,57 @@ export default function CheckoutPage() {
     }
   }, [formData, rememberAddress]);
 
-  const shippingFee = cartTotal >= 1499 ? 0 : 79;
+  useEffect(() => {
+    const script = document.createElement(
+      "script",
+    );
 
-  const discount = coupon === "WHATIF10" ? 100 : 0;
+    script.src =
+      "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
+
+  const shippingFee =
+    cartTotal >= 1499 ? 0 : 79;
+
+  const discount =
+    appliedCoupon === "WHATIF10"
+      ? 100
+      : 0;
 
   const finalTotal =
     cartTotal + shippingFee - discount;
 
-  const autoAddress = `
-${formData.fullName}
-${formData.house}
-${formData.area}
-${formData.landmark}
-${formData.city}
-${formData.state} - ${formData.pincode}
-Phone: ${formData.phone}
-`;
-
+    const autoAddress =
+    formData.fullName ||
+    formData.house ||
+    formData.area ||
+    formData.landmark ||
+    formData.city ||
+    formData.state ||
+    formData.pincode ||
+    formData.phone
+      ? `
+  ${formData.fullName}
+  ${formData.house}
+  ${formData.area}
+  ${formData.landmark}
+  ${formData.city}
+  ${formData.state}${
+          formData.pincode
+            ? ` - ${formData.pincode}`
+            : ""
+        }
+  ${
+    formData.phone
+      ? `Phone: ${formData.phone}`
+      : ""
+  }
+  `.trim()
+      : "";
   const cartProducts = useMemo(() => {
     return cart.map((item) => {
       const product = products.find(
@@ -171,7 +225,8 @@ Phone: ${formData.phone}
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Valid email required";
+      newErrors.email =
+        "Valid email required";
     }
 
     if (formData.phone.length !== 10) {
@@ -207,6 +262,23 @@ Phone: ${formData.phone}
     );
   };
 
+  const applyCoupon = () => {
+    const formatted =
+      coupon.trim().toUpperCase();
+
+    if (formatted === "WHATIF10") {
+      setAppliedCoupon(formatted);
+
+      alert(
+        "Coupon applied successfully",
+      );
+    } else {
+      setAppliedCoupon("");
+
+      alert("Invalid coupon code");
+    }
+  };
+
   const useLiveLocation = async () => {
     if (!navigator.geolocation) {
       alert("Geolocation not supported");
@@ -217,6 +289,7 @@ Phone: ${formData.phone}
       async (position) => {
         const lat =
           position.coords.latitude;
+
         const lon =
           position.coords.longitude;
 
@@ -259,6 +332,98 @@ Phone: ${formData.phone}
         );
       },
     );
+  };
+
+  const handlePayment = async () => {
+    if (!validateForm()) return;
+
+    setLoading(true);
+
+    try {
+      const orderData = {
+        customer_name:
+          formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        address: autoAddress,
+        products: cartProducts,
+        subtotal: cartTotal,
+        shipping: shippingFee,
+        discount,
+        total: finalTotal,
+        coupon: appliedCoupon,
+        payment_status: "paid",
+      };
+
+      const options = {
+        key:
+          process.env
+            .NEXT_PUBLIC_RAZORPAY_KEY_ID,
+
+        amount: finalTotal * 100,
+
+        currency: "INR",
+
+        name: "WHAT IF WEAR",
+
+        description:
+          "Secure Premium Checkout",
+
+        handler: async function (
+          response: any,
+        ) {
+          const { error } =
+            await supabase
+              .from("orders")
+              .insert([
+                {
+                  ...orderData,
+                  razorpay_payment_id:
+                    response.razorpay_payment_id,
+                },
+              ]);
+
+              if (error) {
+                console.log(error);
+              
+                alert(JSON.stringify(error));
+              
+                return;
+              }
+
+          clearCart();
+
+          alert(
+            "Payment Successful",
+          );
+
+          router.push(
+            "/order-success",
+          );
+        },
+
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+          contact: formData.phone,
+        },
+
+        theme: {
+          color: "#134B42",
+        },
+      };
+
+      const razor =
+        new window.Razorpay(options);
+
+      razor.open();
+    } catch (err) {
+      console.log(err);
+
+      alert("Something went wrong");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -491,8 +656,6 @@ Phone: ${formData.phone}
                 />
               </div>
 
-              {/* FULL ADDRESS */}
-
               <div>
                 <label className="mb-2 block text-[11px] uppercase tracking-[0.20em] text-[#134B42]/60">
                   Full Address
@@ -568,9 +731,9 @@ Phone: ${formData.phone}
                 >
                   <div className="flex gap-4">
                     <Link
-                      href={`/product/${item.slug}`}
+                      href={`/product/${item.id}`}
                     >
-                      <div className="relative h-[110px] w-[90px] overflow-hidden rounded-[22px] bg-white/10">
+                      <div className="relative h-[110px] w-[90px] cursor-pointer overflow-hidden rounded-[22px] bg-white/10 transition hover:scale-[1.03]">
                         <Image
                           src={item.images?.[0]}
                           alt={item.name}
@@ -663,10 +826,14 @@ Phone: ${formData.phone}
                       e.target.value,
                     )
                   }
+                  placeholder="Example: WHATIF10"
                   className="h-12 flex-1 rounded-full border border-white/10 bg-white/10 px-5 text-[13px] outline-none"
                 />
 
-                <button className="rounded-full bg-[#EEA83B] px-5 text-[12px] font-semibold text-[#134B42]">
+                <button
+                  onClick={applyCoupon}
+                  className="rounded-full bg-[#EEA83B] px-5 text-[12px] font-semibold text-[#134B42]"
+                >
                   Apply
                 </button>
               </div>
@@ -678,6 +845,7 @@ Phone: ${formData.phone}
               <div className="space-y-4">
                 <div className="flex justify-between text-[13px] text-white/70">
                   <span>Subtotal</span>
+
                   <span>
                     ₹{cartTotal}
                   </span>
@@ -725,15 +893,8 @@ Phone: ${formData.phone}
               </div>
 
               <button
-                onClick={() => {
-                  if (
-                    validateForm()
-                  ) {
-                    alert(
-                      "Proceeding to payment",
-                    );
-                  }
-                }}
+                onClick={handlePayment}
+                disabled={loading}
                 className="
                   mt-7
                   w-full
@@ -750,8 +911,9 @@ Phone: ${formData.phone}
                   hover:scale-[1.02]
                 "
               >
-                Proceed To Secure Payment •
-                ₹{finalTotal}
+                {loading
+                  ? "Processing..."
+                  : `Proceed To Secure Payment • ₹${finalTotal}`}
               </button>
 
               <p className="mt-4 text-center text-[11px] text-white/60">
